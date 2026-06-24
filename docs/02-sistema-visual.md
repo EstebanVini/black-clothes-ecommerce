@@ -1,4 +1,4 @@
-# 02 · Sistema Visual — YOYO
+# 02 · Sistema Visual — Black Clothes
 
 > **Autor:** visual-designer · **Fase:** 2 · **Estado:** listo para handoff a `ui-engineer`
 > **Entregables:** `css/tokens.css`, `css/base.css`, este documento.
@@ -36,7 +36,7 @@ En el `<head>` de **cada** página, en este orden:
 ## 2. Las tres leyes no negociables
 
 1. **Nada de texto/controles sobre el océano.** El océano es solo ambiente (fondo fijo del `body`). Todo contenido vive dentro de un `.contenedor` y sobre una **superficie de madera sólida** (`--surface-1..4`). Única excepción: el **hero**, donde el video va sobre el océano pero el texto se apoya en un **velo sólido** (`--hero-veil`), nunca sobre el video crudo.
-2. **Dorado reservado.** `--gold-light / --gold / --gold-deep` solo para: logo YOYO, títulos display destacados, **badge de oferta** (único relleno dorado permitido, y pequeño), insignias y el **anillo de foco**. **Jamás** como relleno de botones grandes ni áreas extensas.
+2. **Dorado reservado.** `--gold-light / --gold / --gold-deep` solo para: logo Black Clothes, títulos display destacados, **badge de oferta** (único relleno dorado permitido, y pequeño), insignias y el **anillo de foco**. **Jamás** como relleno de botones grandes ni áreas extensas.
 3. **Terracota (`--sale`) solo para ofertas.** Es el único color funcional añadido. Aparece exclusivamente en el precio rebajado y la etiqueta de porcentaje. No lo uses para errores, enlaces ni nada más.
 
 ---
@@ -92,7 +92,7 @@ Pinta cada nivel con su color sólido + sombra. La **veta de madera** (`.texture
 
 ### Header / nav sticky
 - `position: sticky; top: 0; z-index: var(--z-header)`. Fondo `--surface-2` + `.texture-wood`, hairline inferior `--border-default`.
-- **Logo YOYO:** `.titulo-display` + `.titulo-dorado`, serif, `--gold-light`. Único dorado permanente del chrome.
+- **Logo Black Clothes:** `.titulo-display` + `.titulo-dorado`, serif, `--gold-light`. Único dorado permanente del chrome.
 - **Nav primaria:** sans, `--neutral-200`; hover → `--neutral-50`. **Ítem activo:** subrayado fino dorado (`box-shadow: 0 2px 0 var(--gold)` o `border-bottom: 2px solid var(--gold)`), o peso `--weight-semibold`.
 - **Scrolled (compacto):** reduce padding vertical y sube a `--shadow-header`. Es un *hook* para motion-engineer; el estado lo activa una clase (p. ej. `.is-scrolled`) — define ambas variantes en CSS.
 - **Móvil:** botón `☰` (44×44) abre drawer sobre `--surface-1` a pantalla con velo `--z-overlay`. Carrito siempre visible a la derecha.
@@ -180,7 +180,7 @@ Grupo tipo radio. Cada talla = botón cuadrado ≥44×44, `--surface-3`, texto `
 - Imagen principal `--radius-md`, `--surface-1` de fondo mientras carga. Miniaturas en fila (`.no-scrollbar` si overflow), `--radius-sm`. **thumb activo:** borde `--gold`. **hover/focus:** borde `--border-strong` + anillo dorado. Placeholder de marca si rota.
 
 ### Empty state (carrito vacío / filtro sin resultados)
-- Bloque centrado sobre `--surface-1` + `.texture-wood`, `--radius-lg`, padding generoso. Ícono/monograma YOYO en `--neutral-600` (apagado), título serif `--fs-display-3` `--neutral-100`, texto `--neutral-300`, CTA = botón primario. En filtro vacío, **mantén visibles los chips activos** arriba.
+- Bloque centrado sobre `--surface-1` + `.texture-wood`, `--radius-lg`, padding generoso. Ícono/monograma Black Clothes en `--neutral-600` (apagado), título serif `--fs-display-3` `--neutral-100`, texto `--neutral-300`, CTA = botón primario. En filtro vacío, **mantén visibles los chips activos** arriba.
 
 ### Toast / mini-confirmación ("Añadido a la bolsa")
 - `position: fixed`, `--z-toast`, `--surface-3` + `.texture-wood`, `--radius-md`, `--shadow-card`, hairline `--border-default`. Texto `--neutral-50` + acciones "Ver bolsa" / "Seguir comprando" (botón de texto). Auto-oculta ~3–4s. Entrada slide+fade; en `prefers-reduced-motion` solo fade (hook motion).
@@ -189,7 +189,7 @@ Grupo tipo radio. Cada talla = botón cuadrado ≥44×44, `--surface-3`, texto `
 - Sans `--fs-sm`. Segmentos enlazados `--neutral-300` (hover `--neutral-50` subrayado); separador "/" en `--neutral-600`; segmento actual `--neutral-100` no enlazado, `aria-current="page"`.
 
 ### Placeholder de imagen (universal)
-- Caja con `--surface-2` + `.texture-wood`, centrado el **monograma YOYO** en serif `--neutral-600` (o un SVG de marca), `--radius` igual al del medio que reemplaza. El `alt` conserva el nombre del producto. Reúsalo en card, galería, line item y miniaturas.
+- Caja con `--surface-2` + `.texture-wood`, centrado el **monograma Black Clothes** en serif `--neutral-600` (o un SVG de marca), `--radius` igual al del medio que reemplaza. El `alt` conserva el nombre del producto. Reúsalo en card, galería, line item y miniaturas.
 
 ---
 

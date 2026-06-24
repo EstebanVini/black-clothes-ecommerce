@@ -1,10 +1,10 @@
-# Plan de Desarrollo — YOYO · Tienda de ropa (demo)
+# Plan de Desarrollo — Black Clothes · Tienda de ropa (demo)
 
 > Ecommerce de ropa **demo** que debe verse 100% real. Stack: **HTML + CSS + JavaScript puro** (sin frameworks, sin build, sin dependencias). Estética **idéntica** a `catan-assistant`: tema oscuro madera/noche, fondo océano con degradado radial + olas animadas, superficies de madera cálida sólidas, **dorado reservado** para marca/títulos/insignias, escala neutra cálida (arena↔nogal), tipografía display serif + sans del sistema, y sistema de movimiento estricto (solo `transform`/`opacity`, respeta `prefers-reduced-motion`).
 
 ## 1. Producto
 
-**Marca:** YOYO — moda con alma artesanal. Editorial, premium, cálida.
+**Marca:** Black Clothes — moda con alma artesanal. Editorial, premium, cálida.
 **Idioma:** Español. **Moneda:** MXN.
 **Medios:** imágenes y video de uso libre (Pexels/Unsplash), hotlink directo, verificados.
 
@@ -49,13 +49,13 @@ ux-architect ─► ┌ visual-designer ┐ ─► ui-engineer ─► motion-eng
 - **Entrega:** `docs/01-brief-ux.md`. Indicar handoff a `visual-designer` y `ux-writer`.
 
 #### 🎨 `visual-designer` — Sistema visual en código
-- Adaptar **fielmente** los tokens de catán a la marca YOYO (paleta, superficies, dorado, neutros cálidos, sombras, tipografía display serif).
+- Adaptar **fielmente** los tokens de catán a la marca Black Clothes (paleta, superficies, dorado, neutros cálidos, sombras, tipografía display serif).
 - Escribir `css/tokens.css` (custom properties: color, espaciado, radios, sombras, tipografía, z-index) y `css/base.css` (reset, fondo océano fijo + olas animadas, tipografía base, foco dorado, utilidades).
 - Especificar el tratamiento visual de componentes (cards, botones, badges, nav) para guiar al `ui-engineer`.
 - **Entrega:** `css/tokens.css`, `css/base.css`, `docs/02-sistema-visual.md`. Handoff a `ui-engineer`.
 
 #### ✍️ `ux-writer` — Voz de marca, catálogo y copy
-- Definir voz/tono de YOYO y glosario.
+- Definir voz/tono de Black Clothes y glosario.
 - Escribir `js/data.js`: ≈16 productos reales (nombre, categoría, precio MXN, colores, tallas, descripción editorial, materiales, badges, imágenes desde `docs/media-assets.json`).
 - Redactar TODO el copy de UI: nav, hero, CTAs ("Añadir al carrito", "Finalizar compra"…), labels de filtros, estados vacíos/error, newsletter, footer, confirmaciones.
 - **Entrega:** `js/data.js`, `docs/03-copy-deck.md`. Handoff a `ui-engineer`.

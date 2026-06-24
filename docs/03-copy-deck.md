@@ -1,4 +1,4 @@
-# 03 · Copy Deck — YOYO · Tienda de ropa (demo)
+# 03 · Copy Deck — Black Clothes · Tienda de ropa (demo)
 
 > **Autor:** ux-writer · **Fase:** 2 · **Estado:** listo para handoff a ui-engineer
 > **Idioma:** español (México) · **Moneda:** MXN · **Sin emojis en ninguna superficie.**
@@ -13,7 +13,7 @@
 
 ### 1.1 Personalidad de marca
 
-YOYO es **moda con alma artesanal**: premium y editorial, pero cercana. Hablamos como una amiga que sabe de ropa y te quiere ver bien, no como un corporativo ni como un algoritmo. Cálida, nunca fría.
+Black Clothes es **moda con alma artesanal**: premium y editorial, pero cercana. Hablamos como una amiga que sabe de ropa y te quiere ver bien, no como un corporativo ni como un algoritmo. Cálida, nunca fría.
 
 - **Segunda persona, tuteo:** "tu bolsa", "elige tu talla", "te escribiremos pronto".
 - **Voz activa:** "No pudimos aplicar el cupón", nunca "El cupón no pudo ser aplicado".
@@ -25,7 +25,7 @@ YOYO es **moda con alma artesanal**: premium y editorial, pero cercana. Hablamos
 
 ### 1.2 Glosario (términos únicos — usar siempre estos, nunca sus sinónimos)
 
-| Concepto | Término oficial YOYO | No usar |
+| Concepto | Término oficial Black Clothes | No usar |
 |---|---|---|
 | Contenedor de compra | **bolsa** ("tu bolsa", "ir a la bolsa") | carrito, canasta |
 | Acción de meter a la bolsa | **añadir** ("Añadir a la bolsa") | agregar, meter |
@@ -50,7 +50,7 @@ YOYO es **moda con alma artesanal**: premium y editorial, pero cercana. Hablamos
 
 | Elemento | Texto |
 |---|---|
-| Logo (texto serif) | `YOYO` |
+| Logo (texto serif) | `Black Clothes` |
 | Nav · ítem 1 | `Tienda` |
 | Nav · ítem 2 | `Colecciones` |
 | Nav · ítem 3 | `Lookbook` |
@@ -60,7 +60,7 @@ YOYO es **moda con alma artesanal**: premium y editorial, pero cercana. Hablamos
 
 | Elemento | aria-label / texto |
 |---|---|
-| Enlace del logo | `YOYO · Ir al inicio` |
+| Enlace del logo | `Black Clothes · Ir al inicio` |
 | Botón menú móvil (abrir) | `Abrir menú` |
 | Botón menú móvil (cerrar) | `Cerrar menú` |
 | Enlace al carrito (ícono bolsa) | `Tu bolsa, {n} prendas` |
@@ -117,7 +117,7 @@ YOYO es **moda con alma artesanal**: premium y editorial, pero cercana. Hablamos
 |---|---|
 | Eyebrow | `Lookbook` |
 | Cita / manifiesto (serif) | `No hacemos ropa para una temporada. La hacemos para tu vida.` |
-| Texto de campaña | `Cada pieza nace de manos que conocen su oficio: cortes pensados, costuras firmes y materiales que envejecen bien. Esto es YOYO.` |
+| Texto de campaña | `Cada pieza nace de manos que conocen su oficio: cortes pensados, costuras firmes y materiales que envejecen bien. Esto es Black Clothes.` |
 | CTA | `Conoce el taller` |
 
 ### 3.5 Newsletter
@@ -139,21 +139,21 @@ YOYO es **moda con alma artesanal**: premium y editorial, pero cercana. Hablamos
 
 | Zona | Elemento | Texto |
 |---|---|---|
-| Marca | Logo | `YOYO` |
+| Marca | Logo | `Black Clothes` |
 | Marca | Claim | `Moda con alma artesanal. Hecha para acompañarte.` |
 | Col. Tienda | Título | `Tienda` |
 | Col. Tienda | Enlaces | `Novedades` · `Colecciones` · `Ofertas` · `Lookbook` |
 | Col. Ayuda | Título | `Ayuda` |
 | Col. Ayuda | Enlaces | `Envíos` · `Devoluciones` · `Guía de tallas` · `Contacto` |
-| Col. Nosotros | Título | `YOYO` |
-| Col. Nosotros | Enlaces | `Sobre YOYO` · `El taller` · `Términos` · `Privacidad` |
+| Col. Nosotros | Título | `Black Clothes` |
+| Col. Nosotros | Enlaces | `Sobre Black Clothes` · `El taller` · `Términos` · `Privacidad` |
 | Newsletter mini | Título | `Novedades por correo` |
 | Newsletter mini | Placeholder | `nombre@correo.com` |
 | Newsletter mini | CTA | `Suscribirme` |
-| Redes | aria-label Instagram | `YOYO en Instagram` |
-| Redes | aria-label Pinterest | `YOYO en Pinterest` |
-| Redes | aria-label TikTok | `YOYO en TikTok` |
-| Pie | Copyright | `© 2026 YOYO · Demo sin fines comerciales` |
+| Redes | aria-label Instagram | `Black Clothes en Instagram` |
+| Redes | aria-label Pinterest | `Black Clothes en Pinterest` |
+| Redes | aria-label TikTok | `Black Clothes en TikTok` |
+| Pie | Copyright | `© 2026 Black Clothes · Demo sin fines comerciales` |
 | Pie | Nota | `Hecho con alma en México.` |
 
 ---
@@ -375,9 +375,9 @@ Tienes 30 días para devolverlo sin costo, siempre que conserve sus etiquetas.
 | Estado · inválido | `Ese cupón no es válido. Revisa que esté bien escrito.` |
 | Estado · ya aplicado | `Ya aplicaste ese cupón.` |
 | Estado · campo vacío al aplicar | `Escribe un cupón para aplicarlo.` |
-| Pista demo (opcional, sutil) | `¿Tienes un cupón? Prueba YOYO10.` |
+| Pista demo (opcional, sutil) | `¿Tienes un cupón? Prueba BLACK10.` |
 
-> **Cupones demo válidos:** `YOYO10` (−10% del subtotal) · `HOLA200` (−$200 MXN). Documentados en `data.js`.
+> **Cupones demo válidos:** `BLACK10` (−10% del subtotal) · `HOLA200` (−$200 MXN). Documentados en `data.js`.
 
 ### 6.6 CTA de checkout
 
@@ -402,7 +402,7 @@ Tienes 30 días para devolverlo sin costo, siempre que conserve sus etiquetas.
 | Título | `¡Gracias por tu compra!` |
 | Texto | `Recibimos tu pedido y ya lo estamos preparando con cuidado. Te enviamos los detalles a tu correo.` |
 | Etiqueta número de pedido | `Número de pedido` |
-| Valor número de pedido (formato) | `YOYO-{6 dígitos}` |
+| Valor número de pedido (formato) | `BC-{6 dígitos}` |
 | Resumen breve | `{n} prendas · Total {monto}` |
 | Nota demo | `Esto es una demo: no se realizó ningún cargo.` |
 | CTA primario | `Volver a la tienda` |

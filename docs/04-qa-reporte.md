@@ -1,4 +1,4 @@
-# YOYO · Reporte de QA Auditoría
+# Black Clothes · Reporte de QA Auditoría
 
 **Auditor:** qa-auditor (última línea antes de "listo para demo")
 **Fecha:** 2026-06-23

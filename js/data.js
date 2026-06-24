@@ -1,15 +1,15 @@
 /* =============================================================================
-   YOYO · data.js
+   Black Clothes · data.js
    Catálogo de productos y datos de marca. Script CLÁSICO (no módulo).
-   Todo se expone en el objeto global window.YOYO_DATA.
+   Todo se expone en el objeto global window.BLACKCLOTHES_DATA.
    Autor: ux-writer · Español de México · Moneda MXN.
    ============================================================================= */
 
-window.YOYO_DATA = {
+window.BLACKCLOTHES_DATA = {
 
   /* --- Marca -------------------------------------------------------------- */
   marca: {
-    nombre: "YOYO",
+    nombre: "Black Clothes",
     tagline: "Moda con alma artesanal",
     envioGratisDesde: 1499,
     moneda: "MXN"
@@ -17,7 +17,7 @@ window.YOYO_DATA = {
 
   /* --- Cupones demo ------------------------------------------------------- */
   cupones: {
-    "YOYO10": { tipo: "porcentaje", valor: 10, etiqueta: "−10%" },
+    "BLACK10": { tipo: "porcentaje", valor: 10, etiqueta: "−10%" },
     "HOLA200": { tipo: "fijo", valor: 200, etiqueta: "−$200" }
   },
 

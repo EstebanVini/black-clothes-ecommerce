@@ -1,7 +1,7 @@
 /* =============================================================================
-   YOYO · ui.js
+   Black Clothes · ui.js
    Helpers de render compartidos. Script CLÁSICO (no módulo).
-   Toda la API pública se expone en window.YOYO_UI.
+   Toda la API pública se expone en window.BLACKCLOTHES_UI.
    -----------------------------------------------------------------------------
    Incluye:
      · Iconos SVG inline (bolsa, búsqueda, flecha, check, menú, cerrar, estrella…)
@@ -13,7 +13,7 @@
      · Filtros y orden del catálogo
      · Galería y selectores del detalle
      · Render de la bolsa (carrito)
-   Depende de window.YOYO_DATA (data.js) y window.YOYO_CART (cart.js).
+   Depende de window.BLACKCLOTHES_DATA (data.js) y window.BLACKCLOTHES_CART (cart.js).
    ============================================================================= */
 
 (function (global) {
@@ -195,7 +195,7 @@
      99+ → "9+". Actualiza también el aria-label del enlace.
      ========================================================================== */
   function pintarConteoBolsa() {
-    var total = global.YOYO_CART ? global.YOYO_CART.contarItems() : 0;
+    var total = global.BLACKCLOTHES_CART ? global.BLACKCLOTHES_CART.contarItems() : 0;
     var badges = $all("[data-bolsa-badge]");
     var enlaces = $all("[data-bolsa-enlace]");
 
@@ -216,15 +216,15 @@
 
   /* =============================================================================
      6 · TOAST con aria-live
-     Contenedor #yoyo-toasts (posicionado por CSS). Auto-oculta ~3.8s.
+     Contenedor #blackclothes-toasts (posicionado por CSS). Auto-oculta ~3.8s.
      ========================================================================== */
   var TOAST_DURACION = 3800;
 
   function contenedorToasts() {
-    var cont = doc.getElementById("yoyo-toasts");
+    var cont = doc.getElementById("blackclothes-toasts");
     if (!cont) {
       cont = doc.createElement("div");
-      cont.id = "yoyo-toasts";
+      cont.id = "blackclothes-toasts";
       cont.className = "toasts";
       cont.setAttribute("role", "status");
       cont.setAttribute("aria-live", "polite");
@@ -325,7 +325,7 @@
      7 · CARD DE PRODUCTO (catálogo, novedades, sugeridos)
      ========================================================================== */
   function nombreCategoria(slug) {
-    var cats = (global.YOYO_DATA && global.YOYO_DATA.categorias) || [];
+    var cats = (global.BLACKCLOTHES_DATA && global.BLACKCLOTHES_DATA.categorias) || [];
     for (var i = 0; i < cats.length; i++) {
       if (cats[i].slug === slug) {
         return cats[i].nombre;
@@ -730,7 +730,7 @@
   /* =============================================================================
      13 · Exposición
      ========================================================================== */
-  global.YOYO_UI = {
+  global.BLACKCLOTHES_UI = {
     icono: icono,
     formatearPrecio: formatearPrecio,
     formatearDescuento: formatearDescuento,

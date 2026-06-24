@@ -1,12 +1,12 @@
 /* =============================================================================
-   YOYO · motion.js
+   Black Clothes · motion.js
    Sistema de movimiento del lado del cliente. Script CLÁSICO (no módulo).
    Se carga DESPUÉS de main.js: el contenido y los grids ya están pintados.
    -----------------------------------------------------------------------------
    Responsabilidades:
      1. Scroll reveals (fade + slide-up) con stagger por [data-reveal-grupo],
         vía IntersectionObserver. One-shot: el observer se desconecta al revelar.
-     2. Pulso del badge de la bolsa cuando el conteo SUBE (suscrito a YOYO_CART).
+     2. Pulso del badge de la bolsa cuando el conteo SUBE (suscrito a BLACKCLOTHES_CART).
      3. Fundido sutil del grid del catálogo al refiltrar (suaviza el re-render).
 
    CONTRATO de accesibilidad / no-JS (innegociable):
@@ -202,12 +202,12 @@
   /* =============================================================================
      2 · PULSO DEL BADGE DE LA BOLSA al incrementar
      -----------------------------------------------------------------------------
-     No hay un evento "añadido" dedicado, pero YOYO_CART notifica a sus
-     suscriptores en cada cambio y YOYO_UI repinta el badge. Nos suscribimos y,
+     No hay un evento "añadido" dedicado, pero BLACKCLOTHES_CART notifica a sus
+     suscriptores en cada cambio y BLACKCLOTHES_UI repinta el badge. Nos suscribimos y,
      comparando contra el último conteo conocido, pulsamos SÓLO cuando sube.
      ========================================================================== */
   function initPulsoBadge() {
-    var CART = global.YOYO_CART;
+    var CART = global.BLACKCLOTHES_CART;
     if (!CART || typeof CART.suscribir !== "function") {
       return;
     }
@@ -227,7 +227,7 @@
     }
 
     function alAnimar(e) {
-      if (e.animationName === "yoyo-badge-pulso") {
+      if (e.animationName === "bc-badge-pulso") {
         e.currentTarget.classList.remove("bolsa-badge--pulso");
       }
     }

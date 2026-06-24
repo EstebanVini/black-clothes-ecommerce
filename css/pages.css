@@ -1,5 +1,5 @@
 /* =============================================================================
-   YOYO · pages.css — Layout específico de cada página.
+   Black Clothes · pages.css — Layout específico de cada página.
    -----------------------------------------------------------------------------
    Consume tokens.css y compone los componentes de components.css. Sin
    animaciones de entrada/scroll (esas viven en motion.css). Mobile-first:
@@ -92,15 +92,21 @@ main {
   max-width: 42ch;
   padding-bottom: env(safe-area-inset-bottom);
 }
+/* Hero: el texto se apoya sobre el VIDEO oscurecido por --hero-veil, no sobre
+   crema. Por eso usa tinta CREMA (extremo claro de la escala), no la tinta
+   oscura de página. El eyebrow también va en CREMA: el taupe --gold (#B7A082)
+   es demasiado claro para texto pequeño sobre el velo (≈3:1 incluso sobre frame
+   oscuro, <1.5:1 sobre frame claro). Crema a 0.92 mantiene el matiz de eyebrow
+   suave y cumple AA sobre la zona velada. */
 .hero__eyebrow {
-  color: var(--gold);
+  color: rgba(243, 238, 230, 0.92);
 }
 .hero__titulo {
   font-size: var(--fs-display-hero);
-  color: var(--neutral-50);
+  color: var(--ink-light);
 }
 .hero__sub {
-  color: var(--neutral-200);
+  color: rgba(243, 238, 230, 0.88);
   font-size: var(--fs-md);
   line-height: var(--lh-snug);
   max-width: 46ch;
@@ -111,6 +117,7 @@ main {
   gap: var(--space-3);
   margin-top: var(--space-2);
 }
+/* Indicador de scroll: también sobre el video → tinta y trazos CREMA. */
 .hero__scroll {
   position: absolute;
   left: 50%;
@@ -121,12 +128,12 @@ main {
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  color: var(--neutral-300);
+  color: rgba(243, 238, 230, 0.78);
 }
 .hero__scroll-icono {
   width: 22px;
   height: 36px;
-  border: 1px solid var(--border-strong);
+  border: 1px solid rgba(243, 238, 230, 0.55);
   border-radius: var(--radius-pill);
   position: relative;
 }
@@ -139,7 +146,7 @@ main {
   width: 4px;
   height: 8px;
   border-radius: var(--radius-pill);
-  background-color: var(--gold);
+  background-color: rgba(243, 238, 230, 0.9);
 }
 
 @media (min-width: 769px) {
@@ -183,11 +190,14 @@ main {
 .coleccion-card:hover .coleccion-card__media img {
   transform: scale(1.05);
 }
+/* Velo sobre la foto de colección: oscurece la imagen para que el texto CREMA de
+   encima sea legible (texto sobre imagen, no sobre crema → tinta clara). Warm
+   near-black, más denso abajo donde caen el título y el texto. */
 .coleccion-card__velo {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(7, 36, 58, 0.15) 0%, rgba(20, 16, 12, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(26, 24, 20, 0.10) 0%, rgba(26, 24, 20, 0.80) 100%);
 }
 .coleccion-card__contenido {
   position: relative;
@@ -200,13 +210,15 @@ main {
   padding: var(--space-8);
   justify-content: flex-end;
 }
+/* Texto sobre la FOTO (no sobre crema): tinta CREMA para contrastar con el velo
+   oscuro. Usa los tokens "claros" del extremo de la escala (--ink-light). */
 .coleccion-card__titulo {
   font-family: var(--font-display);
   font-size: var(--fs-display-3);
-  color: var(--neutral-50);
+  color: var(--ink-light);
 }
 .coleccion-card__texto {
-  color: var(--neutral-200);
+  color: rgba(243, 238, 230, 0.86);
   font-size: var(--fs-sm);
   max-width: 30ch;
 }
@@ -521,7 +533,8 @@ main {
     position: fixed;
     inset: 0;
     z-index: var(--z-overlay);
-    background-color: rgba(7, 16, 12, 0.6);
+    /* Velo de modal del drawer de filtros: negro cálido translúcido. */
+    background-color: rgba(26, 24, 20, 0.5);
   }
 }
 
@@ -809,7 +822,6 @@ main {
 .confirmacion__titulo {
   font-size: var(--fs-display-1);
   color: var(--gold-light);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55);
 }
 .confirmacion__texto {
   max-width: 48ch;

@@ -1,26 +1,26 @@
 /* =============================================================================
-   YOYO · cart.js
+   Black Clothes · cart.js
    Estado de la bolsa (carrito) en localStorage. Script CLÁSICO (no módulo).
-   Toda la API pública se expone en window.YOYO_CART.
+   Toda la API pública se expone en window.BLACKCLOTHES_CART.
    -----------------------------------------------------------------------------
-   · Persistencia: localStorage bajo la clave "yoyo_bolsa".
+   · Persistencia: localStorage bajo la clave "blackclothes_bolsa".
    · Robustez: si localStorage no está disponible (modo privado estricto),
      degrada a una bolsa EN MEMORIA durante la sesión. Nunca lanza excepción
      que rompa la página.
    · Una "línea" es una variante única: producto + talla + color.
-   · Depende de window.YOYO_DATA (data.js) para precios y reglas de envío.
+   · Depende de window.BLACKCLOTHES_DATA (data.js) para precios y reglas de envío.
    ============================================================================= */
 
 (function (global) {
   "use strict";
 
-  var STORAGE_KEY = "yoyo_bolsa";
+  var STORAGE_KEY = "blackclothes_bolsa";
   var ENVIO_COSTO = 99; // costo de envío por debajo del umbral (MXN)
 
   /* --- Disponibilidad de localStorage (probada, no asumida) --------------- */
   var almacenamientoDisponible = (function () {
     try {
-      var prueba = "__yoyo_test__";
+      var prueba = "__blackclothes_test__";
       global.localStorage.setItem(prueba, "1");
       global.localStorage.removeItem(prueba);
       return true;
@@ -85,7 +85,7 @@
 
   /* --- Acceso al catálogo ------------------------------------------------- */
   function catalogo() {
-    return (global.YOYO_DATA && global.YOYO_DATA.productos) || [];
+    return (global.BLACKCLOTHES_DATA && global.BLACKCLOTHES_DATA.productos) || [];
   }
 
   function buscarProducto(idProducto) {
@@ -99,7 +99,7 @@
   }
 
   function umbralEnvioGratis() {
-    return (global.YOYO_DATA && global.YOYO_DATA.marca && global.YOYO_DATA.marca.envioGratisDesde) || 1499;
+    return (global.BLACKCLOTHES_DATA && global.BLACKCLOTHES_DATA.marca && global.BLACKCLOTHES_DATA.marca.envioGratisDesde) || 1499;
   }
 
   /* --- Identidad de línea (producto + talla + color) ---------------------- */
@@ -254,12 +254,12 @@
   }
 
   /**
-   * Evalúa un cupón contra YOYO_DATA.cupones SIN aplicarlo a la bolsa.
+   * Evalúa un cupón contra BLACKCLOTHES_DATA.cupones SIN aplicarlo a la bolsa.
    * Devuelve { valido, codigo, etiqueta, descuento, motivo }.
    * El descuento se calcula sobre el subtotal recibido.
    */
   function evaluarCupon(codigo, subtotal) {
-    var cupones = (global.YOYO_DATA && global.YOYO_DATA.cupones) || {};
+    var cupones = (global.BLACKCLOTHES_DATA && global.BLACKCLOTHES_DATA.cupones) || {};
     var limpio = (codigo || "").trim().toUpperCase();
 
     if (!limpio) {
@@ -335,7 +335,7 @@
   }
 
   /* --- Exposición --------------------------------------------------------- */
-  global.YOYO_CART = {
+  global.BLACKCLOTHES_CART = {
     agregar: agregar,
     actualizar: actualizar,
     eliminar: eliminar,

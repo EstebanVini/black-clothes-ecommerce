@@ -1,4 +1,4 @@
-# 01 · Brief UX — YOYO · Tienda de ropa (demo)
+# 01 · Brief UX — Black Clothes · Tienda de ropa (demo)
 
 > **Autor:** ux-architect · **Fase:** 1 · **Estado:** listo para handoff
 > **Stack objetivo:** HTML + CSS + JS puro, multi-archivo, sin build, sin frameworks.
@@ -41,10 +41,10 @@ Cuatro páginas, jerarquía plana. El **producto** es el único nodo dinámico (
 Mismo header en las 4 páginas. Estructura de izquierda a derecha:
 
 ```
-[ ☰ menú móvil ]   [ YOYO (logo serif dorado → Home) ]   [ Tienda  Colecciones  Lookbook  Contacto ]   [ 🔍? ]  [ 🛒 carrito · (n) ]
+[ ☰ menú móvil ]   [ Black Clothes (logo serif dorado → Home) ]   [ Tienda  Colecciones  Lookbook  Contacto ]   [ 🔍? ]  [ 🛒 carrito · (n) ]
 ```
 
-- **Logo YOYO:** texto serif display, color dorado, enlaza a Home. Único uso de dorado tipográfico permanente en el chrome.
+- **Logo Black Clothes:** texto serif display, color dorado, enlaza a Home. Único uso de dorado tipográfico permanente en el chrome.
 - **Nav primaria (desktop):** `Tienda` (→ tienda.html), `Colecciones` (ancla/filtro de catálogo), `Lookbook` (ancla en Home), `Contacto` (ancla footer). Solo `Tienda` es página real; las demás son anclas/filtros — mantenerlo honesto para una demo creíble.
 - **Carrito:** ícono SVG + **badge contador** con el número de unidades. El badge se oculta cuando el total es 0 (no muestra "0"). Es el único elemento del nav que cambia de estado en runtime.
 - **Estado activo:** el ítem de la sección actual se marca (subrayado dorado fino o peso tipográfico), para orientación.
@@ -56,9 +56,9 @@ Mismo header en las 4 páginas. Estructura de izquierda a derecha:
 Sobre `surface-1`. Cuatro zonas:
 
 1. **Marca + claim** (logo serif + una línea de posicionamiento — la escribe ux-writer).
-2. **Navegación:** Tienda, Colecciones, Lookbook, Sobre YOYO.
+2. **Navegación:** Tienda, Colecciones, Lookbook, Sobre Black Clothes.
 3. **Ayuda/legal (demo):** Envíos, Devoluciones, Términos, Privacidad (enlaces inertes o a anclas; honestos para demo).
-4. **Newsletter mini** (opcional duplicado del bloque de Home) + redes (íconos SVG) + nota "© 2026 YOYO · Demo".
+4. **Newsletter mini** (opcional duplicado del bloque de Home) + redes (íconos SVG) + nota "© 2026 Black Clothes · Demo".
 
 ### 1.4 Breadcrumbs
 
@@ -208,7 +208,7 @@ Para cada uno, el ui-engineer debe implementar **todos** los estados listados. E
 | **Empty state** | Carrito vacío, filtro sin resultados | ilustración/ícono + texto + CTA |
 | **Toast / mini-confirmación** | "Añadido a la bolsa" | aparece · auto-oculta (≈3–4 s) · con acción · reduced-motion (sin slide, solo fade) |
 | **Breadcrumb** | Detalle | enlaces + segmento actual no enlazado |
-| **Placeholder de imagen** | Cualquier `<img>` que falle | fondo madera + ícono/monograma YOYO + `alt` legible |
+| **Placeholder de imagen** | Cualquier `<img>` que falle | fondo madera + ícono/monograma Black Clothes + `alt` legible |
 
 ---
 
@@ -236,7 +236,7 @@ Para cada uno, el ui-engineer debe implementar **todos** los estados listados. E
 - **Carrito vacío (primer uso o tras checkout):** empty state: "Tu bolsa está vacía" + frase de marca + **"Ir a la tienda"** (primario). Oculta resumen y cupón.
 - **Eliminar última línea:** transición a estado vacío (sin recarga).
 - **Cantidad a 0 vía stepper:** el mínimo es 1; bajar de 1 ofrece eliminar (o el − queda deshabilitado en 1 y se elimina con el botón de basura — definir una sola convención: **mínimo 1, eliminar es acción aparte**).
-- **Cupón inválido:** error inline bajo el campo ("Ese cupón no es válido"), sin perder el carrito. Cupón demo válido documentado por ux-writer (p. ej. `YOYO10`).
+- **Cupón inválido:** error inline bajo el campo ("Ese cupón no es válido"), sin perder el carrito. Cupón demo válido documentado por ux-writer (p. ej. `BLACK10`).
 - **Producto que dejó de existir / sin stock al recargar:** marcar la línea con aviso "Ya no disponible" y permitir eliminarla; no romper el total.
 - **Checkout simulado:** confirmación in-page + vaciado de carrito + badge a 0.
 - **localStorage no disponible (modo privado estricto):** degradar a carrito de sesión en memoria; nunca lanzar excepción que rompa la página.
@@ -288,8 +288,8 @@ Para cada uno, el ui-engineer debe implementar **todos** los estados listados. E
 
 Este brief queda listo para la **Fase 2 (paralela)**:
 
-- **→ `visual-designer`** — Traduce las premisas de §0 y el inventario de componentes (§4) a `css/tokens.css` + `css/base.css` y al documento `docs/02-sistema-visual.md`. Decisiones que dependen de ti: paleta exacta YOYO (manteniendo océano/madera/dorado/neutros cálidos de catán), escala tipográfica serif+sans, sombras de elevación de superficies, tratamiento visual de cada estado listado (hover, focus dorado, badge de oferta dorado, agotado atenuado), composición del hero con velo sobre video, y placeholder de imagen de marca. **Restricción dura:** dorado reservado; cero texto sobre océano/video crudo.
+- **→ `visual-designer`** — Traduce las premisas de §0 y el inventario de componentes (§4) a `css/tokens.css` + `css/base.css` y al documento `docs/02-sistema-visual.md`. Decisiones que dependen de ti: paleta exacta Black Clothes (manteniendo océano/madera/dorado/neutros cálidos de catán), escala tipográfica serif+sans, sombras de elevación de superficies, tratamiento visual de cada estado listado (hover, focus dorado, badge de oferta dorado, agotado atenuado), composición del hero con velo sobre video, y placeholder de imagen de marca. **Restricción dura:** dorado reservado; cero texto sobre océano/video crudo.
 
-- **→ `ux-writer`** — Define voz/tono de YOYO y escribe `js/data.js` (~16 productos: nombre, categoría, precio MXN, colores, tallas con stock por talla, descripción editorial, materiales/cuidado, badges, imágenes) + `docs/03-copy-deck.md` con TODO el copy de UI referenciado aquí: nav y footer, hero (título/subtítulo/CTA), labels de filtros y orden, textos de los **empty states** (carrito vacío, filtro sin resultados), errores inline (talla faltante, cupón inválido, email inválido, `?id=` inválido), CTAs ("Añadir al carrito", "Finalizar compra", "Seguir comprando", "Ir a la tienda"), toast "Añadido a la bolsa", newsletter, confirmación de checkout y cupón demo válido. Usa esta especificación como índice de strings a producir.
+- **→ `ux-writer`** — Define voz/tono de Black Clothes y escribe `js/data.js` (~16 productos: nombre, categoría, precio MXN, colores, tallas con stock por talla, descripción editorial, materiales/cuidado, badges, imágenes) + `docs/03-copy-deck.md` con TODO el copy de UI referenciado aquí: nav y footer, hero (título/subtítulo/CTA), labels de filtros y orden, textos de los **empty states** (carrito vacío, filtro sin resultados), errores inline (talla faltante, cupón inválido, email inválido, `?id=` inválido), CTAs ("Añadir al carrito", "Finalizar compra", "Seguir comprando", "Ir a la tienda"), toast "Añadido a la bolsa", newsletter, confirmación de checkout y cupón demo válido. Usa esta especificación como índice de strings a producir.
 
 > Ambos consumen este documento en paralelo. La implementación (`ui-engineer`) arranca cuando tokens + copy + data estén listos.

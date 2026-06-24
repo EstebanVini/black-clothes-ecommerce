@@ -1,5 +1,5 @@
 /* =============================================================================
-   YOYO · main.js
+   Black Clothes · main.js
    Inicialización por página. Script CLÁSICO (no módulo).
    Detecta la página por el atributo data-pagina del <body> y conecta eventos.
    Depende de: data.js, cart.js, ui.js (cargados antes).
@@ -9,9 +9,9 @@
   "use strict";
 
   var doc = global.document;
-  var UI = global.YOYO_UI;
-  var CART = global.YOYO_CART;
-  var DATA = global.YOYO_DATA;
+  var UI = global.BLACKCLOTHES_UI;
+  var CART = global.BLACKCLOTHES_CART;
+  var DATA = global.BLACKCLOTHES_DATA;
 
   var $ = UI.$;
   var $all = UI.$all;
@@ -458,7 +458,7 @@
       if (ctaSticky) {
         ctaSticky.style.display = "none";
       }
-      document.title = "Prenda no encontrada · YOYO";
+      document.title = "Prenda no encontrada · Black Clothes";
       renderSugeridos(null, "[data-error-sugeridos]");
       return;
     }
@@ -470,7 +470,7 @@
       contProducto.hidden = false;
     }
 
-    document.title = producto.nombre + " · YOYO";
+    document.title = producto.nombre + " · Black Clothes";
     renderDetalle(producto);
     renderSugeridos(producto, "[data-sugeridos]");
   }
@@ -1083,7 +1083,7 @@
           var elNumero = $("[data-pedido-numero]");
           var elResumen = $("[data-pedido-resumen]");
           if (elNumero) {
-            elNumero.textContent = "YOYO-" + num;
+            elNumero.textContent = "BC-" + num;
           }
           if (elResumen) {
             elResumen.textContent = UI.textoPrendas(items) + " · Total " + totalTexto;

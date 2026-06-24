@@ -1,5 +1,5 @@
 /* =============================================================================
-   YOYO · motion.css — Sistema de movimiento (animaciones + micro-interacciones).
+   Black Clothes · motion.css — Sistema de movimiento (animaciones + micro-interacciones).
    -----------------------------------------------------------------------------
    Owner: motion-engineer. Consume EXCLUSIVAMENTE los tokens de movimiento de
    tokens.css (§15): --dur-*, --ease-enter, --ease-press. Cero hex, cero color
@@ -173,7 +173,7 @@
    motion.js añade `.bolsa-badge--pulso` cuando el conteo SUBE y la retira al
    terminar la animación. Un solo "latido" corto: escala arriba y vuelve.
    ========================================================================== */
-@keyframes yoyo-badge-pulso {
+@keyframes bc-badge-pulso {
   0% {
     transform: scale(1);
   }
@@ -192,7 +192,7 @@
   transform-origin: center center;
 }
 .bolsa-badge--pulso {
-  animation: yoyo-badge-pulso var(--dur-slow) var(--ease-press);
+  animation: bc-badge-pulso var(--dur-slow) var(--ease-press);
   will-change: transform;
 }
 
@@ -210,7 +210,7 @@
    El indicador "desliza para ver más" sube y baja suavemente, en loop. Sólo
    transform. Se detiene por completo en reduced-motion.
    ========================================================================== */
-@keyframes yoyo-hero-bob {
+@keyframes bc-hero-bob {
   0%,
   100% {
     transform: translate3d(-50%, 0, 0);
@@ -224,12 +224,12 @@
 .hero__scroll {
   /* hereda el translateX(-50%) de pages.css; el keyframe lo reincluye para no
      perder el centrado durante la animación. */
-  animation: yoyo-hero-bob 2.4s var(--ease-press) infinite;
+  animation: bc-hero-bob 2.4s var(--ease-press) infinite;
 }
 
 /* La "perla" interior del indicador desciende dentro de la cápsula (pista de
    scroll). Animación independiente, sólo transform/opacity. */
-@keyframes yoyo-hero-perla {
+@keyframes bc-hero-perla {
   0% {
     transform: translate3d(-50%, 0, 0);
     opacity: 0;
@@ -246,7 +246,7 @@
   }
 }
 .hero__scroll-icono::after {
-  animation: yoyo-hero-perla 2.4s var(--ease-press) infinite;
+  animation: bc-hero-perla 2.4s var(--ease-press) infinite;
 }
 
 /* =============================================================================

@@ -1,16 +1,22 @@
 /* =============================================================================
-   YOYO · tokens.css — Catálogo canónico de design tokens (fuente de verdad)
+   Black Clothes · tokens.css — Catálogo canónico de design tokens (fuente de verdad)
    -----------------------------------------------------------------------------
-   Sistema visual adaptado FIELMENTE de `catan-assistant` (océano + madera +
-   dorado reservado + neutros cálidos arena↔nogal). Para una tienda de moda
-   premium/editorial: el dorado es el acento de marca y de "oferta"; se añade un
-   ÚNICO color funcional discreto — terracota cálido de la familia catán
-   (`--sale`, #c4663f = resource-brick) — reservado EXCLUSIVAMENTE a precios
-   rebajados. No se inventa ninguna paleta nueva.
+   PALETA "NUDE" — estética minimalista CLARA y cálida inspirada FIELMENTE en
+   la identidad de Nude Project: off-white crema/ecru de fondo, tinta casi-negra
+   cálida, acento de marca terroso y discreto (taupe/arena → nogal apagado) y un
+   ÚNICO color funcional (terracota/ladrillo cálido, `--sale`) reservado a
+   precios rebajados. CTAs primarios en negro cálido con texto crema. Nada
+   brillante ni saturado: el lujo aquí es la sobriedad.
+
+   Los nombres de las variables son SEMÁNTICOS y se conservan (surface, gold,
+   neutral, sale, ocean…) aunque su VALOR cambió de un tema oscuro "océano +
+   madera + dorado" a este tema claro "crema + arena + terracota". `--ocean-*`
+   ya no es un mar azul: es el ambiente crema global. `--gold*` ya no es dorado
+   brillante: es el taupe/nogal de marca. La textura de madera se neutraliza.
 
    Convención de nombres (decisión documentada):
-     · TOKENS (variables :root) → INGLÉS, para alinear con la herencia de
-       catán y mantener nombres técnicos cortos (surface, gold, neutral, sale).
+     · TOKENS (variables :root) → INGLÉS, nombres técnicos cortos
+       (surface, gold, neutral, sale).
      · CLASES UTILITARIAS de marca (en base.css) → ESPAÑOL de cara al
        ui-engineer (.contenedor, .titulo-display, .texture-wood, .nums).
      · El idioma de la UI (contenido) es español (México).
@@ -18,97 +24,116 @@
    Orden de carga obligatorio: tokens.css ANTES que base.css (base depende de
    estas variables). Ambos se enlazan en el <head> de cada página, tokens primero.
 
-   Regla dura heredada: ningún texto/control se apoya sobre el océano; todo el
-   contenido vive en superficies de madera sólidas (--surface-*). El dorado
-   nunca rellena botones grandes ni áreas extensas.
+   Regla dura: el contenido vive en superficies crema sólidas (--surface-*)
+   elevadas sobre el fondo crema global. El acento taupe nunca rellena botones
+   grandes ni áreas extensas; el relleno de CTA es el negro cálido de marca.
    ========================================================================== */
 
 :root {
   /* ===========================================================================
-     1 · OCÉANO — ambiente global de TODAS las páginas. Nunca fondo de lectura.
+     1 · AMBIENTE CREMA — fondo global de TODAS las páginas (antes "océano").
+     Off-white cálido firma de la marca. Casi plano; las "olas" pasan a ser una
+     bruma crema imperceptible. Nunca fondo de lectura directo (el contenido va
+     en --surface-*), pero ya es lo bastante claro para no exigir superficies.
      =========================================================================== */
-  --ocean-deep: #07243a;   /* fondo del mar / color de respaldo del body      */
-  --ocean-mid: #0c3553;    /* profundidad media del degradado                 */
-  --ocean-high: #176087;   /* horizonte iluminado (tope del radial)           */
+  --ocean-deep: #EFE8DB;   /* crema base / color de respaldo del body          */
+  --ocean-mid: #F3EEE6;    /* crema medio del degradado (tono firma)           */
+  --ocean-high: #F6F2EA;   /* crema más claro (tope del radial, "horizonte")   */
 
-  /* Olas: SVG inline diminuto (<1 KB), trazos blancos al 3.5–5% de opacidad.
-     Idéntico al de catán. Se anima su deriva con transform (ver base.css). */
-  --ocean-waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70' viewBox='0 0 140 70'%3E%3Cg fill='none' stroke='%23ffffff' stroke-linecap='round'%3E%3Cpath d='M0 18 q17.5 -9 35 0 t35 0 t35 0 t35 0' stroke-opacity='0.05' stroke-width='1.5'/%3E%3Cpath d='M-17.5 53 q17.5 -9 35 0 t35 0 t35 0 t35 0' stroke-opacity='0.035' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  /* "Olas": SVG inline diminuto (<1 KB). En tema claro son trazos crema cálidos
+     a ~3–4% de opacidad: una textura casi invisible, no un mar. Se anima su
+     deriva muy lenta con transform (ver base.css); en la práctica imperceptible. */
+  --ocean-waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70' viewBox='0 0 140 70'%3E%3Cg fill='none' stroke='%23b7a082' stroke-linecap='round'%3E%3Cpath d='M0 18 q17.5 -9 35 0 t35 0 t35 0 t35 0' stroke-opacity='0.04' stroke-width='1.5'/%3E%3Cpath d='M-17.5 53 q17.5 -9 35 0 t35 0 t35 0 t35 0' stroke-opacity='0.03' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E");
 
-  /* Degradado del océano (más luz en el horizonte, profundidad abajo). */
+  /* Degradado crema muy sutil (un punto más claro arriba, asentado abajo). */
   --ocean-gradient: radial-gradient(130% 90% at 50% -10%, var(--ocean-high) 0%, var(--ocean-mid) 48%, var(--ocean-deep) 100%);
 
-  /* Capas compuestas (olas + degradado), para contenedores que tapan el body
-     a pantalla completa (.bg-ocean). El fondo global del body las separa en
-     ::before (degradado) + ::after (olas animadas). */
+  /* Capas compuestas (bruma + degradado) para contenedores full-bleed que tapan
+     el body (.bg-ocean). El fondo global del body las separa en ::before
+     (degradado) + ::after (bruma con deriva). */
   --ocean-layers: var(--ocean-waves), var(--ocean-gradient);
 
   /* ===========================================================================
-     2 · SUPERFICIES de madera oscura cálida, SÓLIDAS y elevadas sobre el océano.
-     Tokens semánticos: los componentes no inventan su propio bg.
+     2 · SUPERFICIES crema escalonadas, SÓLIDAS y elevadas sobre el fondo crema.
+     A diferencia del tema oscuro, suben de CLARO (cards más luminosas que el
+     fondo) a un crema un poco más MARCADO (estados fuertes). Tokens semánticos:
+     los componentes no inventan su propio bg.
      =========================================================================== */
-  --surface-0: #14100c;  /* base profunda (raíz de página bajo el contenido)  */
-  --surface-1: #1f1812;  /* nivel 1 — secciones, footer, cards de producto    */
-  --surface-2: #271e15;  /* nivel 2 — panel de compra, resumen, line items    */
-  --surface-3: #2f2419;  /* nivel 3 — inputs, chips, botones secundarios      */
-  --surface-4: #3a2c1e;  /* nivel 4 — chips activos, swatches, estados fuertes */
+  --surface-0: #ECE4D6;  /* base de página bajo el contenido (un punto bajo el fondo) */
+  --surface-1: #F3EEE6;  /* nivel 1 — secciones, footer, cards de producto    */
+  --surface-2: #FBF8F2;  /* nivel 2 — panel de compra, resumen, line items (la más clara) */
+  --surface-3: #EDE6D9;  /* nivel 3 — inputs, chips, botones secundarios      */
+  --surface-4: #E2D8C6;  /* nivel 4 — chips activos, swatches, estados fuertes */
+
+  /* Superficie del CTA primario: el NEGRO cálido de marca (firma de Nude para
+     los botones de acción). Texto crema encima (--text-on-cta, ≈15:1). */
+  --surface-cta: #1A1814;       /* relleno del CTA primario                    */
+  --surface-cta-hover: #2A2620; /* hover del CTA (un punto más claro)          */
 
   /* ===========================================================================
-     3 · NEUTROS cálidos (arena → nogal). TODO el texto y los controles adoptan
-     estos tonos. Cero grises fríos. Luminosidades calibradas AA (heredadas).
+     3 · NEUTROS cálidos INVERTIDOS para tema claro. La escala arranca en TINTA
+     casi-negra cálida (50 = la más oscura, para títulos/cuerpo sobre crema) y
+     termina en CREMA (950 = el más claro, base de "texto sobre negro" del CTA).
+     Cero grises fríos. Luminosidades calibradas WCAG AA contra superficie crema.
+     50–500 son roles de TEXTO (oscuros); 600–950 son bordes/superficies (claros).
      =========================================================================== */
-  --neutral-50: #f8f1e3;   /* arena clarísima — títulos sobre madera          */
-  --neutral-100: #f0e6d2;  /* texto base de cuerpo                            */
-  --neutral-200: #ddcfb4;  /* texto secundario / subtítulos                  */
-  --neutral-300: #c5b290;  /* texto terciario / labels suaves                */
-  --neutral-400: #a28b6d;  /* texto deshabilitado / metadatos                */
-  --neutral-500: #9a8268;  /* mínimo AA para texto pequeño informativo        */
-  --neutral-600: #6b573f;  /* bordes cálidos, divisores fuertes              */
-  --neutral-700: #51402e;  /* bordes/hairlines sobre madera                  */
-  --neutral-800: #392c1f;  /* canto oscuro, separadores sutiles              */
-  --neutral-900: #251d14;  /* sombras de borde, fondos hundidos              */
-  --neutral-950: #191310;  /* tinta oscura — base del anillo de foco          */
+  --neutral-50: #1A1814;   /* tinta casi-negra cálida — títulos y texto fuerte */
+  --neutral-100: #26221B;  /* texto base de cuerpo (≈13.7:1 sobre crema)       */
+  --neutral-200: #5C5346;  /* texto secundario / subtítulos (≈6.5:1)           */
+  --neutral-300: #655D50;  /* texto terciario / labels suaves (AA en surface-0..4: 4.60–6.12:1; el valor previo #6E665A caía a 4.48 sobre surface-0 y 4.01 sobre surface-4) */
+  --neutral-400: #6E6557;  /* metadatos / placeholders (AA ≈4.9:1 sobre crema) */
+  --neutral-500: #7E7466;  /* deshabilitado / agotado (informativo, ≥3:1)      */
+  --neutral-600: #A89E8E;  /* bordes cálidos visibles, divisores fuertes       */
+  --neutral-700: #C2B7A4;  /* bordes/hairlines sobre crema                     */
+  --neutral-800: #D8CDBA;  /* cantos suaves, pista de progreso, separadores    */
+  --neutral-900: #E4DCCD;  /* fondos hundidos, bordes muy tenues               */
+  --neutral-950: #F3EEE6;  /* crema más pálido — texto crema sobre el CTA negro */
 
   /* Atajos semánticos de tinta (extremos de la escala). */
-  --ink-light: var(--neutral-50);  /* texto sobre madera                      */
-  --ink-dark: var(--neutral-950);  /* base del foco / texto sobre dorado      */
+  --ink-dark: var(--neutral-50);   /* tinta oscura sobre crema / base del foco  */
+  --ink-light: var(--neutral-950); /* crema sobre el negro del CTA / taupe      */
 
   /* Roles de texto (semánticos, para que el ui-engineer no elija a mano). */
-  --text-primary: var(--neutral-100);
+  --text-primary: var(--neutral-100);   /* cuerpo oscuro sobre crema           */
   --text-secondary: var(--neutral-200);
   --text-muted: var(--neutral-400);
-  --text-on-gold: var(--neutral-950);   /* texto oscuro sobre relleno dorado   */
-  --text-on-sale: var(--neutral-50);    /* texto claro sobre terracota oferta  */
+  --text-on-gold: var(--neutral-50);    /* texto oscuro sobre relleno taupe     */
+  --text-on-sale: var(--neutral-950);   /* texto crema sobre terracota oferta   */
+  --text-on-cta: var(--neutral-950);    /* texto crema sobre el CTA negro       */
 
-  /* Bordes / hairlines (cálidos translúcidos, sobre madera). */
-  --border-subtle: rgba(255, 235, 200, 0.07);
-  --border-default: rgba(255, 235, 200, 0.12);
-  --border-strong: rgba(255, 235, 200, 0.20);
+  /* Bordes / hairlines cálidos sobre crema (taupe translúcido, NO blanco). */
+  --border-subtle: rgba(60, 48, 32, 0.08);
+  --border-default: rgba(60, 48, 32, 0.14);
+  --border-strong: rgba(60, 48, 32, 0.24);
 
   /* ===========================================================================
-     4 · DORADO — RESERVADO: marca, títulos display, insignias, OFERTAS, foco.
-     Nunca relleno de botones grandes ni áreas extensas.
+     4 · ACENTO NUDE — taupe/arena → nogal apagado (mantiene los nombres --gold*).
+     RESERVADO: marca/logo, títulos display, insignias, foco, estados "éxito".
+     Terroso y DISCRETO (NO brillante). --gold-light es además un rol de TEXTO
+     (logo, "envío gratis", confirmaciones): se calibra para AA sobre crema.
+     Nunca rellena botones grandes (eso es trabajo del CTA negro de marca).
      =========================================================================== */
-  --gold-light: #ecc35f;  /* títulos/marca/realce — el dorado más legible     */
-  --gold: #d9a93e;        /* base — bordes dorados, badge de oferta           */
-  --gold-deep: #a87b22;   /* sombra del dorado, cantos de insignias           */
+  --gold-light: #6F5C42;  /* nogal legible — marca/títulos/realce como TEXTO (AA) */
+  --gold: #B7A082;        /* taupe/arena base — bordes, badge, rellenos chicos */
+  --gold-deep: #8C7659;   /* nogal apagado — sombra/canto de insignias        */
 
-  /* Velos translúcidos de dorado (acentos, hovers, anillos suaves). */
-  --gold-tint-08: rgba(217, 169, 62, 0.08);   /* wash de fondo muy sutil      */
-  --gold-tint-16: rgba(217, 169, 62, 0.16);   /* hover/halo de selección     */
-  --gold-tint-35: rgba(217, 169, 62, 0.35);   /* aro interior de insignia    */
+  /* Velos translúcidos del acento (washes, hovers, anillos suaves) sobre crema. */
+  --gold-tint-08: rgba(140, 118, 89, 0.10);   /* wash de fondo muy sutil      */
+  --gold-tint-16: rgba(140, 118, 89, 0.18);   /* hover/halo de selección     */
+  --gold-tint-35: rgba(183, 160, 130, 0.40);  /* aro/selección de insignia    */
 
   /* ===========================================================================
-     5 · COLOR FUNCIONAL ÚNICO — OFERTA (terracota cálido = catán resource-brick)
+     5 · COLOR FUNCIONAL ÚNICO — OFERTA (terracota/ladrillo cálido, familia nude).
      RESERVADO EXCLUSIVAMENTE a precios rebajados / ahorro. No usar en otra cosa.
      =========================================================================== */
-  --sale: #c4663f;        /* terracota — RELLENOS/acentos: badge, bordes, puntos */
-  --sale-deep: #8f482b;   /* sombra del terracota / borde                     */
-  --sale-tint-12: rgba(196, 102, 63, 0.12);   /* fondo suave de la fila de ahorro */
-  /* Terracota para TEXTO sobre madera (misma familia, aclarado para cumplir
-     WCAG AA ≥4.5:1 incluso sobre surface-2 y sobre la fila --sale-tint-12).
+  --sale: #A8542F;        /* terracota RELLENO: badge, bordes, puntos. Calibrado
+                             para que el texto crema (--text-on-sale) cumpla AA. */
+  --sale-deep: #823F22;   /* sombra del terracota / borde                     */
+  --sale-tint-12: rgba(168, 84, 47, 0.12);    /* fondo suave de la fila de ahorro */
+  /* Terracota OSCURECIDO para TEXTO sobre crema (misma familia, ennegrecido para
+     cumplir WCAG AA ≥4.5:1 sobre surface-2 y sobre la fila --sale-tint-12).
      Reservado igual que --sale: precio rebajado y fila de ahorro. */
-  --sale-text: #d97e57;
+  --sale-text: #9A4E2E;
 
   /* ===========================================================================
      6 · AGOTADO / DESHABILITADO (apagado, nogal — sin color funcional).
@@ -118,11 +143,12 @@
   --disabled-opacity: 0.45;     /* atenuación de cards/botones agotados        */
 
   /* ===========================================================================
-     7 · FOCO — anillo dorado (visible sobre madera Y sobre océano). Doble capa:
-     borde oscuro interior (--ink-dark) + halo dorado exterior. box-shadow.
+     7 · FOCO — anillo oscuro/taupe (visible sobre crema Y sobre superficies).
+     Doble capa: filo crema interior (separa del control) + halo nogal oscuro
+     exterior. Sustituye el halo dorado del tema oscuro. box-shadow.
      =========================================================================== */
-  --ring-focus: rgba(236, 195, 95, 0.9);
-  --focus-ring: 0 0 0 2px var(--ink-dark), 0 0 0 4px var(--ring-focus);
+  --ring-focus: rgba(74, 60, 42, 0.92);   /* nogal oscuro, alto contraste sobre crema */
+  --focus-ring: 0 0 0 2px var(--neutral-950), 0 0 0 4px var(--ring-focus);
 
   /* ===========================================================================
      8 · TIPOGRAFÍA
@@ -215,33 +241,39 @@
   --radius-circle: 50%;   /* swatches de color, botones de stepper            */
 
   /* ===========================================================================
-     12 · SOMBRAS — cálidas, con realce interior (filo iluminado arriba, canto
-     oscuro abajo). Replicadas del espíritu de catán (soft/card/wood/cta/medal).
+     12 · SOMBRAS — de TEMA CLARO: suaves y cálidas muy tenues. Las sombras de
+     caída usan un marrón cálido translúcido (no negro puro, que ensucia el
+     crema) a baja opacidad. Se retiran los insets "luz arriba" del tema oscuro;
+     donde hace falta definición se usa un filo oscuro sutilísimo.
      =========================================================================== */
-  --shadow-soft: 0 1px 0 0 rgba(255, 235, 200, 0.05) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.45);
-  --shadow-card: 0 1px 0 0 rgba(255, 235, 200, 0.06) inset, 0 4px 14px -4px rgba(0, 0, 0, 0.55);
+  --shadow-soft: 0 1px 2px 0 rgba(58, 44, 28, 0.10);
+  --shadow-card: 0 1px 2px -1px rgba(58, 44, 28, 0.10), 0 6px 16px -8px rgba(58, 44, 28, 0.16);
   /* Elevación de card al hover (más profundidad, sin mover layout). */
-  --shadow-card-hover: 0 1px 0 0 rgba(255, 235, 200, 0.08) inset, 0 14px 32px -10px rgba(0, 0, 0, 0.65);
-  /* Botones/superficies madera: realce arriba, canto oscuro, caída corta. */
-  --shadow-wood: inset 0 1px 0 rgba(255, 235, 200, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.45), 0 2px 5px -1px rgba(0, 0, 0, 0.5);
-  /* CTA primario (botón de acción). Glow cálido dorado tenue + relieve. El
-     relleno del botón es madera, NO dorado; el glow es el único toque cálido. */
-  --shadow-cta: 0 6px 18px -4px rgba(168, 123, 34, 0.40), 0 1px 0 0 rgba(255, 255, 255, 0.12) inset, 0 -2px 0 0 rgba(0, 0, 0, 0.20) inset;
-  /* Medalla/sello para insignias y badge de oferta: aro interior dorado. */
-  --shadow-medal: inset 0 0 0 1px rgba(217, 169, 62, 0.35), inset 0 1px 0 rgba(255, 235, 200, 0.18), 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 2px 4px -2px rgba(58, 44, 28, 0.12), 0 16px 34px -12px rgba(58, 44, 28, 0.24);
+  /* Botones/superficies crema: filo oscuro tenue + caída corta (sin glow claro). */
+  --shadow-wood: inset 0 -1px 0 rgba(58, 44, 28, 0.10), 0 1px 2px 0 rgba(58, 44, 28, 0.12);
+  /* CTA primario (botón NEGRO de marca): sombra acorde al relleno oscuro
+     (caída neutra + un filo superior crema tenue para relieve sobre el negro). */
+  --shadow-cta: 0 6px 18px -6px rgba(26, 24, 20, 0.45), inset 0 1px 0 0 rgba(243, 238, 230, 0.12), inset 0 -2px 0 0 rgba(0, 0, 0, 0.25);
+  /* Medalla/sello para insignias y badge: aro interior taupe sobre la pieza. */
+  --shadow-medal: inset 0 0 0 1px rgba(140, 118, 89, 0.30), 0 1px 2px rgba(58, 44, 28, 0.18);
   /* Header sticky compactado (al hacer scroll gana elevación). */
-  --shadow-header: 0 1px 0 0 rgba(255, 235, 200, 0.05) inset, 0 6px 20px -8px rgba(0, 0, 0, 0.7);
+  --shadow-header: 0 6px 20px -10px rgba(58, 44, 28, 0.22);
 
   /* ===========================================================================
-     13 · TEXTURA de veta de madera (solo gradientes repetidos, cero imágenes).
-     Variables reutilizables para que el ui-engineer no recalcule los rgba.
+     13 · TEXTURA — en tema claro la "veta de madera" oscura no aplica. Se
+     neutraliza a una grano crema casi imperceptible (trazos cálidos a <2%) que
+     NO ensucia el fondo claro; conserva el nombre --wood-grain para no tocar los
+     componentes que la consumen. Para un acabado plano puro, basta con que sus
+     opacidades sean mínimas (como aquí).
      =========================================================================== */
-  --wood-grain: repeating-linear-gradient(92deg, rgba(255, 226, 178, 0.016) 0px, rgba(255, 226, 178, 0.016) 2px, transparent 2px, transparent 7px),
-                repeating-linear-gradient(88deg, rgba(0, 0, 0, 0.05) 0px, rgba(0, 0, 0, 0.05) 1px, transparent 1px, transparent 11px);
+  --wood-grain: repeating-linear-gradient(92deg, rgba(140, 118, 89, 0.018) 0px, rgba(140, 118, 89, 0.018) 2px, transparent 2px, transparent 7px),
+                repeating-linear-gradient(88deg, rgba(120, 96, 64, 0.012) 0px, rgba(120, 96, 64, 0.012) 1px, transparent 1px, transparent 11px);
 
-  /* Velo oscuro sobre el video del hero (legibilidad del texto del hero).
-     Más oscuro abajo donde cae el título; degrada hacia arriba. */
-  --hero-veil: linear-gradient(180deg, rgba(7, 36, 58, 0.30) 0%, rgba(7, 36, 58, 0.55) 45%, rgba(20, 16, 12, 0.88) 100%);
+  /* Velo sobre el video del hero (legibilidad del texto crema del hero). Tema
+     claro: oscurece lo JUSTO el video abajo, donde cae el título crema; degrada
+     a casi transparente arriba para no apagar la imagen. */
+  --hero-veil: linear-gradient(180deg, rgba(26, 24, 20, 0.10) 0%, rgba(26, 24, 20, 0.34) 50%, rgba(26, 24, 20, 0.74) 100%);
 
   /* ===========================================================================
      14 · Z-INDEX — escala documentada (evita el caos de números mágicos).

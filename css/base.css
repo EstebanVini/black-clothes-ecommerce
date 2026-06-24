@@ -1,6 +1,6 @@
 /* =============================================================================
-   YOYO · base.css — Reset moderno, fondo océano global, tipografía base, foco
-   dorado y utilidades de marca.
+   Black Clothes · base.css — Reset moderno, fondo crema global, tipografía base,
+   foco nogal y utilidades de marca.
    -----------------------------------------------------------------------------
    Depende de css/tokens.css (debe cargarse ANTES). Por robustez se deja también
    un @import; si ambos ya se enlazan en orden en el <head>, el @import es inerte
@@ -11,8 +11,8 @@
        <link rel="stylesheet" href="css/pages.css">
        <link rel="stylesheet" href="css/motion.css">
 
-   Regla dura: ningún texto/control se apoya sobre el océano. Todo el contenido
-   vive en superficies de madera sólidas (.contenedor + cards con --surface-*).
+   Tema CLARO "nude": el fondo global es crema cálido (--ocean-*). El contenido
+   vive en superficies crema sólidas (.contenedor + cards con --surface-*).
    ========================================================================== */
 
 @import url("tokens.css");
@@ -54,7 +54,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
-  /* Color de respaldo bajo el océano (si el pseudo-elemento no pinta). */
+  /* Color de respaldo bajo el ambiente crema (si el pseudo-elemento no pinta). */
   background-color: var(--ocean-deep);
   /* Tipografía base: sans del sistema, neutro cálido, variantes de marca. */
   font-family: var(--font-sans);
@@ -122,25 +122,28 @@ a {
 }
 
 :root {
-  /* Color de selección de texto cálido, coherente con la marca. */
+  /* Color de controles nativos: taupe de marca (discreto). */
   accent-color: var(--gold);
 }
 
+/* Selección de texto: velo taupe nude con tinta oscura encima (sobre crema). */
 ::selection {
   background: var(--gold-tint-35);
   color: var(--neutral-50);
 }
 
 /* =============================================================================
-   2 · OCÉANO GLOBAL — fondo fijo del body (degradado + olas animadas).
+   2 · AMBIENTE CREMA GLOBAL — fondo fijo del body (degradado crema + bruma).
    -----------------------------------------------------------------------------
-   Capa FIJA (no repinta al hacer scroll, barato en móvil). Se separa en dos
-   pseudo-elementos para poder animar la deriva de las olas con `transform` en
-   el compositor (cero repaints), no con background-position.
+   Tema claro: el fondo es crema cálido casi plano. Capa FIJA (no repinta al
+   hacer scroll, barato en móvil). Se mantienen los dos pseudo-elementos: el
+   degradado crema en ::before y una bruma crema imperceptible en ::after, cuya
+   deriva se anima con `transform` (cero repaints). En la práctica el movimiento
+   es invisible; existe solo por continuidad con prefers-reduced-motion.
    ========================================================================== */
 
 body::before {
-  /* Degradado radial: más luz en el horizonte, profundidad abajo. */
+  /* Degradado radial crema: un punto más claro arriba, asentado abajo. */
   content: "";
   position: fixed;
   inset: 0;
@@ -153,9 +156,10 @@ body::before {
 }
 
 body::after {
-  /* Olas con deriva. El pseudo se extiende exactamente un tile (140×70) hacia
-     arriba-izquierda y deriva un tile completo hacia abajo-derecha: el loop
-     cierra sin salto y el viewport queda cubierto en todo momento (~2.7 px/s). */
+  /* Bruma crema con deriva (imperceptible). El pseudo se extiende exactamente
+     un tile (140×70) hacia arriba-izquierda y deriva un tile completo hacia
+     abajo-derecha: el loop cierra sin salto y el viewport queda cubierto en todo
+     momento (~2.7 px/s). En tema claro los trazos van al ~3–4%: casi invisibles. */
   content: "";
   position: fixed;
   top: -70px;
@@ -183,8 +187,8 @@ body::after {
    3 · TIPOGRAFÍA BASE
    ========================================================================== */
 
-/* Títulos: serif display por defecto, neutro arena claro, tracking ajustado.
-   El tamaño concreto lo fija cada contexto (utilidades / componentes). */
+/* Títulos: serif display por defecto, tinta oscura cálida sobre crema, tracking
+   ajustado. El tamaño concreto lo fija cada contexto (utilidades / componentes). */
 h1,
 h2,
 h3 {
@@ -231,8 +235,9 @@ small {
 }
 
 /* =============================================================================
-   4 · FOCO — anillo dorado global con :focus-visible (visible sobre madera y
-   océano). Componentes pueden hacer override pero NUNCA quitar el foco a secas.
+   4 · FOCO — anillo nogal oscuro global con :focus-visible (alto contraste
+   sobre crema y superficies). Componentes pueden hacer override pero NUNCA
+   quitar el foco a secas.
    ========================================================================== */
 
 :where(a, button, input, textarea, select, summary, [tabindex], [role="button"], [role="tab"], [role="radio"]):focus-visible {
@@ -274,33 +279,35 @@ small {
   text-wrap: balance;
 }
 
-/* Marca / títulos dorados (uso RESERVADO: logo YOYO, títulos de hero,
-   "GRACIAS POR TU COMPRA", insignias). El dorado tipográfico permanente del
-   chrome se limita al logo. */
+/* Marca / títulos de acento (uso RESERVADO: logo Black Clothes, títulos de hero,
+   "GRACIAS POR TU COMPRA", insignias). En tema claro el acento es el nogal
+   (--gold-light), legible sobre crema; sin sombra oscura (que ensuciaría). */
 .titulo-dorado {
   color: var(--gold-light);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55);
 }
 
-/* Eyebrow / kicker: pequeña etiqueta en versalitas sobre títulos de sección. */
+/* Eyebrow / kicker: pequeña etiqueta en versalitas sobre títulos de sección.
+   Usa el nogal (--gold-light), legible AA sobre crema (el taupe --gold no lo es
+   como texto pequeño). */
 .eyebrow {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-light);
 }
 
-/* Veta de madera sutilísima para paneles grandes (cards, footer, paneles).
-   Se COMBINA con un background-color sólido en el componente; aquí solo añade
-   la textura. No combinar con otro background-image en el mismo elemento. */
+/* Grano crema imperceptible para paneles grandes (cards, footer, paneles). En
+   tema claro --wood-grain es casi plano; se COMBINA con un background-color
+   sólido en el componente y no ensucia el crema. No combinar con otro
+   background-image en el mismo elemento. */
 .texture-wood {
   background-image: var(--wood-grain);
 }
 
-/* Océano como fondo de un contenedor propio (overlays a pantalla completa que
-   tapan el body, p. ej. confirmación de checkout full-bleed). */
+/* Ambiente crema como fondo de un contenedor propio (overlays full-bleed que
+   tapan el body, p. ej. confirmación de checkout). Mismo crema que el body. */
 .bg-ocean {
   background-color: var(--ocean-deep);
   background-image: var(--ocean-layers);
@@ -395,7 +402,7 @@ small {
     transition-duration: 0.001ms !important;
   }
 
-  /* Olas del océano: mar estático (la capa de degradado permanece). */
+  /* Bruma crema: estática (la capa de degradado permanece). */
   body::after {
     animation: none !important;
     transform: none !important;
