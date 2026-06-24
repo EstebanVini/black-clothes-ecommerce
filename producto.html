@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Detalle de prenda YOYO. Elige color, talla y añade a tu bolsa.">
+  <meta name="theme-color" content="#14100c">
+  <title>Prenda · YOYO</title>
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body data-pagina="detalle">
+
+  <a class="sr-only sr-only-focusable" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===================== HEADER GLOBAL ===================== -->
+  <header class="cabecera" data-header>
+    <div class="contenedor">
+      <div class="cabecera__barra">
+        <button type="button" class="boton-icono menu-toggle" data-menu-abrir aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+        </button>
+
+        <a class="logo" href="index.html" aria-label="YOYO · Ir al inicio">YOYO</a>
+
+        <nav class="nav-primaria" aria-label="Navegación principal">
+          <ul class="nav-primaria__lista">
+            <li><a class="nav-primaria__enlace" href="tienda.html">Tienda</a></li>
+            <li><a class="nav-primaria__enlace" href="tienda.html">Colecciones</a></li>
+            <li><a class="nav-primaria__enlace" href="index.html#lookbook">Lookbook</a></li>
+            <li><a class="nav-primaria__enlace" href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="cabecera__acciones">
+          <a class="bolsa-enlace" href="carrito.html" data-bolsa-enlace aria-label="Tu bolsa, sin prendas">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9A2 2 0 0 1 7 19L6 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+            <span class="bolsa-badge" data-bolsa-badge hidden></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-velo" data-menu-velo></div>
+  <nav class="menu-panel" id="menu-movil" data-menu-panel aria-label="Menú">
+    <div class="menu-panel__cabecera">
+      <span class="logo">YOYO</span>
+      <button type="button" class="boton-icono" data-menu-cerrar aria-label="Cerrar menú">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <ul class="menu-panel__lista">
+      <li><a class="menu-panel__enlace" href="tienda.html">Tienda</a></li>
+      <li><a class="menu-panel__enlace" href="tienda.html">Colecciones</a></li>
+      <li><a class="menu-panel__enlace" href="index.html#lookbook">Lookbook</a></li>
+      <li><a class="menu-panel__enlace" href="index.html#contacto">Contacto</a></li>
+      <li><a class="menu-panel__enlace" href="carrito.html">Tu bolsa</a></li>
+    </ul>
+  </nav>
+
+  <main id="contenido">
+
+    <noscript>
+      <p class="aviso-noscript">Activa JavaScript para ver el catálogo completo y usar tu bolsa. Mientras tanto, puedes navegar por las secciones del menú.</p>
+    </noscript>
+
+    <!-- ===================== ESTADO DE ERROR (?id inválido) ===================== -->
+    <section class="contenedor detalle-error" data-detalle-error hidden aria-labelledby="error-titulo">
+      <div class="estado-vacio">
+        <span class="estado-vacio__icono" aria-hidden="true">
+          <svg viewBox="0 0 120 120" width="72" height="72" fill="none" aria-hidden="true"><text x="60" y="74" text-anchor="middle" font-family="Iowan Old Style, Palatino, Georgia, serif" font-size="46" font-weight="700" fill="currentColor" letter-spacing="2">YO</text></svg>
+        </span>
+        <h1 class="estado-vacio__titulo" id="error-titulo">No encontramos esa prenda</h1>
+        <p class="estado-vacio__texto">Quizá ya no está disponible o el enlace cambió. No te preocupes, tenemos mucho más por mostrarte.</p>
+        <a class="boton" href="tienda.html">Volver a la tienda</a>
+      </div>
+
+      <div class="seccion seccion--compacta">
+        <div class="seccion-encabezado">
+          <h2 class="seccion-encabezado__titulo">Mientras tanto, échales un ojo</h2>
+        </div>
+        <div class="grid-productos" data-error-sugeridos data-reveal-grupo></div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCTO ===================== -->
+    <article class="contenedor detalle-producto" data-detalle-producto hidden>
+
+      <nav class="breadcrumb detalle__breadcrumb" aria-label="Ruta de navegación">
+        <a href="tienda.html">Tienda</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <a href="tienda.html" data-bc-categoria>Categoría</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span class="breadcrumb__actual" data-bc-nombre aria-current="page">Producto</span>
+      </nav>
+
+      <div class="detalle detalle__layout">
+
+        <!-- Galería -->
+        <section class="galeria" aria-label="Galería de la prenda">
+          <div class="galeria__principal" data-galeria-principal></div>
+          <div class="galeria__thumbs no-scrollbar" data-galeria-thumbs role="group" aria-label="Miniaturas"></div>
+        </section>
+
+        <!-- Panel de compra -->
+        <section class="detalle-compra" aria-label="Opciones de compra">
+          <p class="detalle-compra__categoria" data-categoria></p>
+          <h1 class="detalle-compra__nombre" data-nombre></h1>
+
+          <div class="detalle-compra__precio" data-precio></div>
+
+          <p class="disponibilidad disponibilidad--ok" data-disponibilidad>Disponible</p>
+
+          <!-- Color -->
+          <div class="detalle-compra__bloque">
+            <span class="detalle-compra__label">Color: <span class="color-sel" data-color-sel></span></span>
+            <div class="swatch-grupo" data-colores role="radiogroup" aria-label="Color"></div>
+            <p class="detalle-compra__error" data-error-color role="alert" hidden></p>
+          </div>
+
+          <!-- Talla -->
+          <div class="detalle-compra__bloque">
+            <div class="detalle-compra__bloque-cabecera">
+              <span class="detalle-compra__label" id="label-talla">Talla</span>
+              <a class="boton-texto" href="#">Guía de tallas</a>
+            </div>
+            <div class="selector-talla-grupo" data-tallas role="radiogroup" aria-labelledby="label-talla"></div>
+            <p class="detalle-compra__error" data-error-talla role="alert" aria-live="assertive" hidden></p>
+          </div>
+
+          <!-- Cantidad -->
+          <div class="detalle-compra__bloque">
+            <span class="detalle-compra__label" id="label-cantidad">Cantidad</span>
+            <div class="detalle-compra__cantidad">
+              <div class="stepper" role="group" aria-labelledby="label-cantidad">
+                <button type="button" class="stepper__boton" data-cantidad-menos aria-label="Quitar una unidad" disabled>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg>
+                </button>
+                <span class="stepper__valor nums" data-cantidad-valor aria-live="polite">1</span>
+                <button type="button" class="stepper__boton" data-cantidad-mas aria-label="Agregar una unidad">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="detalle-compra__cta">
+            <button type="button" class="boton boton--bloque" data-anadir>Añadir a la bolsa</button>
+            <p class="detalle-compra__confirmacion" data-confirmacion role="status" hidden>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7"/></svg>
+              Añadido a tu bolsa
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Acordeón de detalles -->
+      <section class="detalle__acordeon" aria-label="Detalles de la prenda">
+        <div class="acordeon">
+          <details class="acordeon__item" open>
+            <summary class="acordeon__resumen">
+              Descripción
+              <span class="acordeon__chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </summary>
+            <div class="acordeon__cuerpo">
+              <p data-descripcion></p>
+            </div>
+          </details>
+          <details class="acordeon__item">
+            <summary class="acordeon__resumen">
+              Materiales y cuidado
+              <span class="acordeon__chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </summary>
+            <div class="acordeon__cuerpo">
+              <p data-materiales></p>
+            </div>
+          </details>
+          <details class="acordeon__item">
+            <summary class="acordeon__resumen">
+              Envíos y devoluciones
+              <span class="acordeon__chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </summary>
+            <div class="acordeon__cuerpo">
+              <p>Enviamos a todo México en 3 a 5 días hábiles. El envío es gratis en pedidos desde $1,499 MXN; debajo de ese monto, cuesta $99 MXN. ¿No era lo que esperabas? Tienes 30 días para devolverlo sin costo, siempre que conserve sus etiquetas.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- Sugeridos -->
+      <section class="seccion" aria-labelledby="sugeridos-titulo">
+        <div class="seccion-encabezado">
+          <span class="eyebrow">Para ti</span>
+          <h2 class="seccion-encabezado__titulo" id="sugeridos-titulo">También te puede gustar</h2>
+          <p class="seccion-encabezado__sub">Más de la misma colección.</p>
+        </div>
+        <div class="grid-productos" data-sugeridos data-reveal-grupo></div>
+      </section>
+
+    </article>
+
+    <!-- CTA sticky móvil -->
+    <div class="cta-sticky">
+      <button type="button" class="boton boton--bloque" data-anadir-sticky>Añadir a la bolsa</button>
+    </div>
+
+  </main>
+
+  <!-- ===================== FOOTER GLOBAL ===================== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__principal">
+        <div class="pie__marca">
+          <span class="logo">YOYO</span>
+          <p class="pie__claim">Moda con alma artesanal. Hecha para acompañarte.</p>
+          <div class="pie__redes">
+            <a class="pie__red" href="#" aria-label="YOYO en Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="pie__red" href="#" aria-label="YOYO en Pinterest">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.5 20.5c-.4-1.6-.1-3.4.3-5 .4-1.7 1.3-5.3 1.3-5.3a3 3 0 1 1 2.8 1.2c-.7 2.8 1.4 4 3.1 2.7 1.9-1.6 1.9-5.6-.6-7.3-2.7-1.9-7-1-8.3 2.2-.5 1.2-.3 2.6.4 3.5"/></svg>
+            </a>
+            <a class="pie__red" href="#" aria-label="YOYO en TikTok">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.4 2.3 2 3.9 4.5 4.2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="pie__columnas">
+          <div>
+            <h2 class="pie__titulo">Tienda</h2>
+            <ul class="pie__lista">
+              <li><a href="tienda.html">Novedades</a></li>
+              <li><a href="tienda.html">Colecciones</a></li>
+              <li><a href="tienda.html">Ofertas</a></li>
+              <li><a href="index.html#lookbook">Lookbook</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="pie__titulo">Ayuda</h2>
+            <ul class="pie__lista">
+              <li><a href="#">Envíos</a></li>
+              <li><a href="#">Devoluciones</a></li>
+              <li><a href="#">Guía de tallas</a></li>
+              <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="pie__titulo">YOYO</h2>
+            <ul class="pie__lista">
+              <li><a href="#">Sobre YOYO</a></li>
+              <li><a href="#">El taller</a></li>
+              <li><a href="#">Términos</a></li>
+              <li><a href="#">Privacidad</a></li>
+            </ul>
+          </div>
+          <div class="pie__newsletter">
+            <h2 class="pie__titulo">Novedades por correo</h2>
+            <form data-newsletter novalidate>
+              <div class="input-grupo">
+                <label class="sr-only" for="footer-email">Tu correo electrónico</label>
+                <input class="input" type="email" id="footer-email" name="email" placeholder="nombre@correo.com" autocomplete="email">
+                <button class="boton-secundario" type="submit">Suscribirme</button>
+              </div>
+              <p class="form-mensaje" data-newsletter-mensaje role="status" hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="pie__base">
+        <span>© 2026 YOYO · Demo sin fines comerciales</span>
+        <span>Hecho con alma en México.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="yoyo-toasts" class="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>

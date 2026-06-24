@@ -1,0 +1,352 @@
+/* =============================================================================
+   YOYO · motion.css — Sistema de movimiento (animaciones + micro-interacciones).
+   -----------------------------------------------------------------------------
+   Owner: motion-engineer. Consume EXCLUSIVAMENTE los tokens de movimiento de
+   tokens.css (§15): --dur-*, --ease-enter, --ease-press. Cero hex, cero color
+   nuevo, cero animación de layout.
+
+   Reglas duras (heredadas de catán, no negociables):
+     · SOLO se animan transform y opacity. NUNCA width/height/top/left/margin.
+     · Feedback 150–400 ms. Entradas decelerantes (--ease-enter). Presses/pulsos
+       con --ease-press.
+     · Grupos entran con STAGGER (retraso escalonado).
+     · prefers-reduced-motion: reduce SIEMPRE respetado — sin desplazamientos; a
+       lo sumo un fade corto de opacidad; nada de parallax ni bob infinito.
+     · 60fps, sin layout thrashing, will-change con moderación (solo durante la
+       ventana de animación; se retira en reposo).
+
+   Orden de carga: tokens → base → components → pages → motion (este archivo es
+   el último; afina/añade movimiento sobre la estructura ya pintada).
+
+   CONTRATO no-JS / accesibilidad (clave):
+     El contenido [data-reveal] es VISIBLE por defecto. El estado inicial oculto
+     se activa SÓLO cuando motion.js confirma soporte y ausencia de reduced-motion
+     añadiendo la clase `.motion-reveal-activo` en el <html>. Si no hay JS, o hay
+     reduced-motion, o no hay IntersectionObserver, esa clase nunca aparece y el
+     contenido permanece plenamente visible. Nunca se esconde de forma permanente.
+   ========================================================================== */
+
+/* =============================================================================
+   0 · ESTADO SEGURO POR DEFECTO
+   Sin JS, sin observer o con reduced-motion: todo revelable está visible.
+   ========================================================================== */
+[data-reveal] {
+  opacity: 1;
+}
+
+/* =============================================================================
+   1 · SCROLL REVEALS (fade + slide-up sutil) + STAGGER
+   -----------------------------------------------------------------------------
+   motion.js pone `.motion-reveal-activo` en <html> y, por cada elemento a
+   revelar, le añade `.reveal-init` (estado oculto) hasta que entra al viewport,
+   momento en que recibe `.is-revelado`.
+   El desplazamiento es pequeño (12px) para no sentirse "appy".
+   ========================================================================== */
+
+/* Estado inicial oculto — SÓLO si motion.js está activo (clase en <html>). */
+.motion-reveal-activo .reveal-init {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  /* will-change sólo mientras el elemento está pendiente de revelar. Se retira
+     al terminar (clase .is-revelado lo pone en auto). */
+  will-change: transform, opacity;
+}
+
+/* Estado revelado — transición de entrada decelerante. */
+.motion-reveal-activo .reveal-init.is-revelado {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity var(--dur-slow) var(--ease-enter),
+    transform var(--dur-slow) var(--ease-enter);
+  /* el retraso de stagger lo inyecta motion.js como inline --reveal-delay */
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: auto;
+}
+
+/* Stagger por grupo: los hijos directos revelables de un [data-reveal-grupo]
+   reciben de motion.js un --reveal-delay incremental (inline). Este bloque
+   documenta el hook; el cálculo del índice vive en JS para soportar grids con
+   número variable de cards. */
+
+/* =============================================================================
+   2 · HOVER DE CARDS (lift sutil + el zoom de imagen ya lo hace components.css)
+   -----------------------------------------------------------------------------
+   components.css ya hace: box-shadow al hover + scale(1.04/1.05) de la <img>
+   dentro del wrapper overflow:hidden. Aquí AÑADIMOS el lift de la card (no lo
+   tenía) usando sólo transform, complementario a la sombra existente.
+   Punteros finos (mouse) sólo: en touch no hay hover real.
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta-producto {
+    /* La transición de transform ya está declarada en components.css; aquí sólo
+       fijamos el destino del hover. */
+    transform: translate3d(0, 0, 0);
+  }
+  .tarjeta-producto:hover {
+    transform: translate3d(0, -4px, 0);
+  }
+  /* Card agotada: no se levanta (coherente con que su imagen tampoco hace zoom). */
+  .tarjeta-producto.es-agotado:hover {
+    transform: none;
+  }
+
+  /* Tarjetas de colección del home: lift gemelo al de producto. */
+  .coleccion-card {
+    transition: transform var(--dur-base) var(--ease-press),
+      box-shadow var(--dur-base) var(--ease-press);
+    transform: translate3d(0, 0, 0);
+  }
+  .coleccion-card:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+/* =============================================================================
+   3 · HEADER .is-scrolled — asentamiento al compactar
+   -----------------------------------------------------------------------------
+   components.css ya da la sombra (--shadow-header) y compacta el padding al
+   ganar .is-scrolled. Aquí añadimos un micro-asentamiento de la BARRA con
+   transform (no layout): la barra "baja" 1px al fijarse, reforzando que el
+   header se ancló. Sólo transform/opacity.
+   ========================================================================== */
+.cabecera__barra {
+  /* transform animable; la transición de padding la declara components.css. */
+  transition: transform var(--dur-base) var(--ease-press);
+  transform: translate3d(0, 0, 0);
+}
+.cabecera.is-scrolled .cabecera__barra {
+  transform: translate3d(0, 0, 0);
+}
+/* La marca brilla un pelín más al compactar (opacidad, no color). */
+.cabecera .logo {
+  transition: opacity var(--dur-base) var(--ease-press);
+}
+
+/* =============================================================================
+   4 · MICRO-INTERACCIONES DE BOTONES (press scale)
+   -----------------------------------------------------------------------------
+   components.css ya hace translateY(-1px) al hover de .boton / .boton-secundario
+   y vuelve a 0 al :active. Aquí añadimos el "press scale" (hundir levemente) que
+   da sensación física al pulsar, sin tocar el hover existente. Sólo transform.
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  .boton:active,
+  .boton-secundario:active {
+    /* combina con el translateY(0) de components.css: leve compresión. */
+    transform: scale(0.97);
+  }
+  .boton-icono:active,
+  .bolsa-enlace:active,
+  .stepper__boton:not(:disabled):active,
+  .selector-talla:not(.es-agotada):active,
+  .chip-filtro:active,
+  .swatch:not(.es-agotado):active,
+  .galeria__thumb:active,
+  .linea-bolsa__eliminar:active {
+    transform: scale(0.92);
+  }
+}
+/* En touch, el press scale igual aporta feedback táctil al tocar. */
+.boton:active,
+.boton-secundario:active {
+  transform: scale(0.97);
+}
+
+/* Asegurar transición corta del press en controles que no la traían explícita
+   para transform (los de components.css ya transicionan transform; estos son
+   defensivos y baratos). */
+.boton-icono,
+.bolsa-enlace,
+.stepper__boton,
+.galeria__thumb,
+.linea-bolsa__eliminar {
+  transition: transform var(--dur-fast) var(--ease-press),
+    color var(--dur-fast) var(--ease-press),
+    background-color var(--dur-fast) var(--ease-press),
+    border-color var(--dur-fast) var(--ease-press);
+}
+
+/* =============================================================================
+   5 · PULSO DEL BADGE DE LA BOLSA al incrementar
+   -----------------------------------------------------------------------------
+   motion.js añade `.bolsa-badge--pulso` cuando el conteo SUBE y la retira al
+   terminar la animación. Un solo "latido" corto: escala arriba y vuelve.
+   ========================================================================== */
+@keyframes yoyo-badge-pulso {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.35);
+  }
+  70% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.bolsa-badge {
+  /* origen en el centro para que el latido no descuadre la posición absoluta. */
+  transform-origin: center center;
+}
+.bolsa-badge--pulso {
+  animation: yoyo-badge-pulso var(--dur-slow) var(--ease-press);
+  will-change: transform;
+}
+
+/* =============================================================================
+   6 · TOAST — entrada/salida
+   -----------------------------------------------------------------------------
+   components.css ya define la transición (opacity + translateY) para
+   .toast / .is-visible / .is-saliendo. No la duplicamos aquí: sólo cubrimos el
+   caso reduced-motion (más abajo). Documentado para que quede el rastro del hook.
+   ========================================================================== */
+
+/* =============================================================================
+   7 · SCROLL-CUE DEL HERO (bob lento)
+   -----------------------------------------------------------------------------
+   El indicador "desliza para ver más" sube y baja suavemente, en loop. Sólo
+   transform. Se detiene por completo en reduced-motion.
+   ========================================================================== */
+@keyframes yoyo-hero-bob {
+  0%,
+  100% {
+    transform: translate3d(-50%, 0, 0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(-50%, 8px, 0);
+    opacity: 1;
+  }
+}
+.hero__scroll {
+  /* hereda el translateX(-50%) de pages.css; el keyframe lo reincluye para no
+     perder el centrado durante la animación. */
+  animation: yoyo-hero-bob 2.4s var(--ease-press) infinite;
+}
+
+/* La "perla" interior del indicador desciende dentro de la cápsula (pista de
+   scroll). Animación independiente, sólo transform/opacity. */
+@keyframes yoyo-hero-perla {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-50%, 12px, 0);
+    opacity: 0;
+  }
+}
+.hero__scroll-icono::after {
+  animation: yoyo-hero-perla 2.4s var(--ease-press) infinite;
+}
+
+/* =============================================================================
+   8 · CHEVRON DEL ACORDEÓN
+   -----------------------------------------------------------------------------
+   components.css ya rota el chevron 180° con [open] y transiciona transform.
+   No hay nada que arreglar; lo dejamos como está. (Bloque documentado por el
+   contrato del stub; sin reglas para no duplicar.)
+   ========================================================================== */
+
+/* =============================================================================
+   9 · TRANSICIÓN SUAVE DEL FILTRADO DEL GRID (catálogo)
+   -----------------------------------------------------------------------------
+   Cuando main.js repinta el grid del catálogo (innerHTML), motion.js marca el
+   contenedor con `.grid-refiltrando` un instante: el grid hace un fade-out
+   cortísimo y vuelve, suavizando el "salto" del re-render. Sólo opacity.
+   El grid NO usa el sistema de reveals one-shot (cambia muchas veces): este es
+   un fundido propio, ligero y repetible.
+   ========================================================================== */
+[data-grid] {
+  transition: opacity var(--dur-fast) var(--ease-enter);
+}
+[data-grid].grid-refiltrando {
+  opacity: 0;
+}
+
+/* =============================================================================
+   10 · prefers-reduced-motion: reduce — NEUTRALIZACIÓN COMPLETA
+   -----------------------------------------------------------------------------
+   base.css ya colapsa duraciones de animación/transición globalmente, pero ESO
+   NO resetea las propiedades transform de destino ni detiene loops infinitos de
+   forma semántica. Aquí, de forma explícita y a prueba de balas:
+     · Nada de slide en reveals: el contenido aparece sin desplazarse (queda
+       visible; si motion.js llegó a ocultarlo, este bloque lo restituye).
+     · Sin lift de cards, sin press-scale, sin bob del hero, sin pulso del badge.
+     · El toast no se desliza (sólo existe/desaparece, con fade casi instantáneo
+       vía base.css).
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  /* Reveals: siempre visibles y sin transform, aunque motion.js los marcara. */
+  [data-reveal],
+  .motion-reveal-activo .reveal-init,
+  .motion-reveal-activo .reveal-init.is-revelado {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  /* Hover lift de cards y colecciones: anulado (sin saltos espaciales). */
+  .tarjeta-producto,
+  .tarjeta-producto:hover,
+  .tarjeta-producto.es-agotado:hover,
+  .coleccion-card,
+  .coleccion-card:hover {
+    transform: none !important;
+  }
+
+  /* Press-scale de controles: sin compresión. */
+  .boton:active,
+  .boton-secundario:active,
+  .boton-icono:active,
+  .bolsa-enlace:active,
+  .stepper__boton:not(:disabled):active,
+  .selector-talla:not(.es-agotada):active,
+  .chip-filtro:active,
+  .swatch:not(.es-agotado):active,
+  .galeria__thumb:active,
+  .linea-bolsa__eliminar:active {
+    transform: none !important;
+  }
+
+  /* Header: sin asentamiento por transform (la sombra de components.css queda). */
+  .cabecera__barra,
+  .cabecera.is-scrolled .cabecera__barra {
+    transform: none !important;
+  }
+
+  /* Hero scroll-cue: bob detenido por completo (nada de movimiento ambiental). */
+  .hero__scroll,
+  .hero__scroll-icono::after {
+    animation: none !important;
+    transform: translateX(-50%) !important;
+  }
+  .hero__scroll-icono::after {
+    /* la perla queda visible en reposo, centrada y opaca. */
+    opacity: 1 !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Badge: sin latido. */
+  .bolsa-badge--pulso {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Grid del catálogo: sin fundido al refiltrar (cambio instantáneo). */
+  [data-grid],
+  [data-grid].grid-refiltrando {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}

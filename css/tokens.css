@@ -1,0 +1,286 @@
+/* =============================================================================
+   YOYO · tokens.css — Catálogo canónico de design tokens (fuente de verdad)
+   -----------------------------------------------------------------------------
+   Sistema visual adaptado FIELMENTE de `catan-assistant` (océano + madera +
+   dorado reservado + neutros cálidos arena↔nogal). Para una tienda de moda
+   premium/editorial: el dorado es el acento de marca y de "oferta"; se añade un
+   ÚNICO color funcional discreto — terracota cálido de la familia catán
+   (`--sale`, #c4663f = resource-brick) — reservado EXCLUSIVAMENTE a precios
+   rebajados. No se inventa ninguna paleta nueva.
+
+   Convención de nombres (decisión documentada):
+     · TOKENS (variables :root) → INGLÉS, para alinear con la herencia de
+       catán y mantener nombres técnicos cortos (surface, gold, neutral, sale).
+     · CLASES UTILITARIAS de marca (en base.css) → ESPAÑOL de cara al
+       ui-engineer (.contenedor, .titulo-display, .texture-wood, .nums).
+     · El idioma de la UI (contenido) es español (México).
+
+   Orden de carga obligatorio: tokens.css ANTES que base.css (base depende de
+   estas variables). Ambos se enlazan en el <head> de cada página, tokens primero.
+
+   Regla dura heredada: ningún texto/control se apoya sobre el océano; todo el
+   contenido vive en superficies de madera sólidas (--surface-*). El dorado
+   nunca rellena botones grandes ni áreas extensas.
+   ========================================================================== */
+
+:root {
+  /* ===========================================================================
+     1 · OCÉANO — ambiente global de TODAS las páginas. Nunca fondo de lectura.
+     =========================================================================== */
+  --ocean-deep: #07243a;   /* fondo del mar / color de respaldo del body      */
+  --ocean-mid: #0c3553;    /* profundidad media del degradado                 */
+  --ocean-high: #176087;   /* horizonte iluminado (tope del radial)           */
+
+  /* Olas: SVG inline diminuto (<1 KB), trazos blancos al 3.5–5% de opacidad.
+     Idéntico al de catán. Se anima su deriva con transform (ver base.css). */
+  --ocean-waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70' viewBox='0 0 140 70'%3E%3Cg fill='none' stroke='%23ffffff' stroke-linecap='round'%3E%3Cpath d='M0 18 q17.5 -9 35 0 t35 0 t35 0 t35 0' stroke-opacity='0.05' stroke-width='1.5'/%3E%3Cpath d='M-17.5 53 q17.5 -9 35 0 t35 0 t35 0 t35 0' stroke-opacity='0.035' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Degradado del océano (más luz en el horizonte, profundidad abajo). */
+  --ocean-gradient: radial-gradient(130% 90% at 50% -10%, var(--ocean-high) 0%, var(--ocean-mid) 48%, var(--ocean-deep) 100%);
+
+  /* Capas compuestas (olas + degradado), para contenedores que tapan el body
+     a pantalla completa (.bg-ocean). El fondo global del body las separa en
+     ::before (degradado) + ::after (olas animadas). */
+  --ocean-layers: var(--ocean-waves), var(--ocean-gradient);
+
+  /* ===========================================================================
+     2 · SUPERFICIES de madera oscura cálida, SÓLIDAS y elevadas sobre el océano.
+     Tokens semánticos: los componentes no inventan su propio bg.
+     =========================================================================== */
+  --surface-0: #14100c;  /* base profunda (raíz de página bajo el contenido)  */
+  --surface-1: #1f1812;  /* nivel 1 — secciones, footer, cards de producto    */
+  --surface-2: #271e15;  /* nivel 2 — panel de compra, resumen, line items    */
+  --surface-3: #2f2419;  /* nivel 3 — inputs, chips, botones secundarios      */
+  --surface-4: #3a2c1e;  /* nivel 4 — chips activos, swatches, estados fuertes */
+
+  /* ===========================================================================
+     3 · NEUTROS cálidos (arena → nogal). TODO el texto y los controles adoptan
+     estos tonos. Cero grises fríos. Luminosidades calibradas AA (heredadas).
+     =========================================================================== */
+  --neutral-50: #f8f1e3;   /* arena clarísima — títulos sobre madera          */
+  --neutral-100: #f0e6d2;  /* texto base de cuerpo                            */
+  --neutral-200: #ddcfb4;  /* texto secundario / subtítulos                  */
+  --neutral-300: #c5b290;  /* texto terciario / labels suaves                */
+  --neutral-400: #a28b6d;  /* texto deshabilitado / metadatos                */
+  --neutral-500: #9a8268;  /* mínimo AA para texto pequeño informativo        */
+  --neutral-600: #6b573f;  /* bordes cálidos, divisores fuertes              */
+  --neutral-700: #51402e;  /* bordes/hairlines sobre madera                  */
+  --neutral-800: #392c1f;  /* canto oscuro, separadores sutiles              */
+  --neutral-900: #251d14;  /* sombras de borde, fondos hundidos              */
+  --neutral-950: #191310;  /* tinta oscura — base del anillo de foco          */
+
+  /* Atajos semánticos de tinta (extremos de la escala). */
+  --ink-light: var(--neutral-50);  /* texto sobre madera                      */
+  --ink-dark: var(--neutral-950);  /* base del foco / texto sobre dorado      */
+
+  /* Roles de texto (semánticos, para que el ui-engineer no elija a mano). */
+  --text-primary: var(--neutral-100);
+  --text-secondary: var(--neutral-200);
+  --text-muted: var(--neutral-400);
+  --text-on-gold: var(--neutral-950);   /* texto oscuro sobre relleno dorado   */
+  --text-on-sale: var(--neutral-50);    /* texto claro sobre terracota oferta  */
+
+  /* Bordes / hairlines (cálidos translúcidos, sobre madera). */
+  --border-subtle: rgba(255, 235, 200, 0.07);
+  --border-default: rgba(255, 235, 200, 0.12);
+  --border-strong: rgba(255, 235, 200, 0.20);
+
+  /* ===========================================================================
+     4 · DORADO — RESERVADO: marca, títulos display, insignias, OFERTAS, foco.
+     Nunca relleno de botones grandes ni áreas extensas.
+     =========================================================================== */
+  --gold-light: #ecc35f;  /* títulos/marca/realce — el dorado más legible     */
+  --gold: #d9a93e;        /* base — bordes dorados, badge de oferta           */
+  --gold-deep: #a87b22;   /* sombra del dorado, cantos de insignias           */
+
+  /* Velos translúcidos de dorado (acentos, hovers, anillos suaves). */
+  --gold-tint-08: rgba(217, 169, 62, 0.08);   /* wash de fondo muy sutil      */
+  --gold-tint-16: rgba(217, 169, 62, 0.16);   /* hover/halo de selección     */
+  --gold-tint-35: rgba(217, 169, 62, 0.35);   /* aro interior de insignia    */
+
+  /* ===========================================================================
+     5 · COLOR FUNCIONAL ÚNICO — OFERTA (terracota cálido = catán resource-brick)
+     RESERVADO EXCLUSIVAMENTE a precios rebajados / ahorro. No usar en otra cosa.
+     =========================================================================== */
+  --sale: #c4663f;        /* terracota — RELLENOS/acentos: badge, bordes, puntos */
+  --sale-deep: #8f482b;   /* sombra del terracota / borde                     */
+  --sale-tint-12: rgba(196, 102, 63, 0.12);   /* fondo suave de la fila de ahorro */
+  /* Terracota para TEXTO sobre madera (misma familia, aclarado para cumplir
+     WCAG AA ≥4.5:1 incluso sobre surface-2 y sobre la fila --sale-tint-12).
+     Reservado igual que --sale: precio rebajado y fila de ahorro. */
+  --sale-text: #d97e57;
+
+  /* ===========================================================================
+     6 · AGOTADO / DESHABILITADO (apagado, nogal — sin color funcional).
+     =========================================================================== */
+  --muted-surface: var(--surface-2);
+  --muted-text: var(--neutral-500);
+  --disabled-opacity: 0.45;     /* atenuación de cards/botones agotados        */
+
+  /* ===========================================================================
+     7 · FOCO — anillo dorado (visible sobre madera Y sobre océano). Doble capa:
+     borde oscuro interior (--ink-dark) + halo dorado exterior. box-shadow.
+     =========================================================================== */
+  --ring-focus: rgba(236, 195, 95, 0.9);
+  --focus-ring: 0 0 0 2px var(--ink-dark), 0 0 0 4px var(--ring-focus);
+
+  /* ===========================================================================
+     8 · TIPOGRAFÍA
+     - display SERIF (stack 100% local) → títulos, marca, precios destacados.
+     - sans del sistema → cuerpo, labels, UI.
+     - mono → precios/números con tabular-nums.
+     =========================================================================== */
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Pesos (el stack serif local rara vez tiene 600; usamos 400/700). */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ── Escala tipográfica FLUIDA (clamp) para títulos display ──────────────
+     Cada paso: clamp(mín-móvil, preferido-vw, máx-desktop). Editorial: saltos
+     amplios para jerarquía dramática en el hero y títulos de sección. */
+  --fs-display-hero: clamp(2.75rem, 6.5vw, 5.25rem);   /* título de hero       */
+  --fs-display-1: clamp(2.25rem, 4.5vw, 3.5rem);       /* H1 de página         */
+  --fs-display-2: clamp(1.75rem, 3.2vw, 2.5rem);       /* H2 de sección        */
+  --fs-display-3: clamp(1.375rem, 2.2vw, 1.75rem);     /* H3 / nombre producto */
+
+  /* Tamaños de texto (cuerpo/UI). Estáticos: ritmo de lectura estable. */
+  --fs-xs: 0.75rem;     /* 12px — metadatos, captions, badges                 */
+  --fs-sm: 0.875rem;    /* 14px — labels, texto secundario                   */
+  --fs-base: 1rem;      /* 16px — cuerpo base (también min iOS en inputs)     */
+  --fs-md: 1.125rem;    /* 18px — subtítulos, lead corto                     */
+  --fs-lg: 1.375rem;    /* 22px — precio destacado                           */
+  --fs-xl: 1.75rem;     /* 28px — precio grande del detalle                  */
+
+  /* Alturas de línea. */
+  --lh-tight: 1.1;      /* títulos display                                   */
+  --lh-snug: 1.25;      /* subtítulos                                        */
+  --lh-normal: 1.55;    /* cuerpo                                            */
+  --lh-relaxed: 1.7;    /* párrafos editoriales largos                       */
+
+  /* Tracking (letter-spacing). */
+  --tracking-tight: -0.02em;   /* títulos display grandes                    */
+  --tracking-snug: -0.01em;    /* precios/números                           */
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;     /* eyebrows / labels en mayúsculas            */
+  --tracking-wider: 0.14em;    /* etiquetas tipo "NOVEDAD" en versalitas     */
+
+  /* font-feature-settings de marca (estilísticos + variantes). */
+  --font-features: "ss01", "cv11";
+
+  /* ===========================================================================
+     9 · ESPACIADO — escala base 4px (0.25rem). Coherente con touch targets 44px.
+     =========================================================================== */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px  */
+  --space-2: 0.5rem;    /* 8px  */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px — separación entre secciones grandes (desktop) */
+
+  /* Ritmo vertical entre secciones (fluido). */
+  --section-gap: clamp(3.5rem, 8vw, 8rem);
+
+  /* Touch target mínimo (WCAG / brief: ≥44px). */
+  --touch-min: 44px;
+
+  /* ===========================================================================
+     10 · LAYOUT — contenedor centrado y padding lateral (gutter) fluido.
+     =========================================================================== */
+  --container-max: 1400px;   /* ancho máximo del contenido                    */
+  --container-narrow: 920px; /* columnas de texto editorial / formularios     */
+  --gutter: clamp(1rem, 4vw, 3rem);   /* padding lateral del .contenedor       */
+
+  /* ===========================================================================
+     11 · RADIOS
+     =========================================================================== */
+  --radius-xs: 0.25rem;   /* 4px  — chips pequeños, badges                    */
+  --radius-sm: 0.5rem;    /* 8px  — inputs, botones, foco (coincide con catán) */
+  --radius-md: 0.75rem;   /* 12px — cards, line items                         */
+  --radius-lg: 1rem;      /* 16px — cards grandes, paneles                    */
+  --radius-xl: 1.5rem;    /* 24px — cards de colección editoriales            */
+  --radius-pill: 999px;   /* píldoras — chips de filtro, badge contador       */
+  --radius-circle: 50%;   /* swatches de color, botones de stepper            */
+
+  /* ===========================================================================
+     12 · SOMBRAS — cálidas, con realce interior (filo iluminado arriba, canto
+     oscuro abajo). Replicadas del espíritu de catán (soft/card/wood/cta/medal).
+     =========================================================================== */
+  --shadow-soft: 0 1px 0 0 rgba(255, 235, 200, 0.05) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 1px 0 0 rgba(255, 235, 200, 0.06) inset, 0 4px 14px -4px rgba(0, 0, 0, 0.55);
+  /* Elevación de card al hover (más profundidad, sin mover layout). */
+  --shadow-card-hover: 0 1px 0 0 rgba(255, 235, 200, 0.08) inset, 0 14px 32px -10px rgba(0, 0, 0, 0.65);
+  /* Botones/superficies madera: realce arriba, canto oscuro, caída corta. */
+  --shadow-wood: inset 0 1px 0 rgba(255, 235, 200, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.45), 0 2px 5px -1px rgba(0, 0, 0, 0.5);
+  /* CTA primario (botón de acción). Glow cálido dorado tenue + relieve. El
+     relleno del botón es madera, NO dorado; el glow es el único toque cálido. */
+  --shadow-cta: 0 6px 18px -4px rgba(168, 123, 34, 0.40), 0 1px 0 0 rgba(255, 255, 255, 0.12) inset, 0 -2px 0 0 rgba(0, 0, 0, 0.20) inset;
+  /* Medalla/sello para insignias y badge de oferta: aro interior dorado. */
+  --shadow-medal: inset 0 0 0 1px rgba(217, 169, 62, 0.35), inset 0 1px 0 rgba(255, 235, 200, 0.18), 0 1px 3px rgba(0, 0, 0, 0.5);
+  /* Header sticky compactado (al hacer scroll gana elevación). */
+  --shadow-header: 0 1px 0 0 rgba(255, 235, 200, 0.05) inset, 0 6px 20px -8px rgba(0, 0, 0, 0.7);
+
+  /* ===========================================================================
+     13 · TEXTURA de veta de madera (solo gradientes repetidos, cero imágenes).
+     Variables reutilizables para que el ui-engineer no recalcule los rgba.
+     =========================================================================== */
+  --wood-grain: repeating-linear-gradient(92deg, rgba(255, 226, 178, 0.016) 0px, rgba(255, 226, 178, 0.016) 2px, transparent 2px, transparent 7px),
+                repeating-linear-gradient(88deg, rgba(0, 0, 0, 0.05) 0px, rgba(0, 0, 0, 0.05) 1px, transparent 1px, transparent 11px);
+
+  /* Velo oscuro sobre el video del hero (legibilidad del texto del hero).
+     Más oscuro abajo donde cae el título; degrada hacia arriba. */
+  --hero-veil: linear-gradient(180deg, rgba(7, 36, 58, 0.30) 0%, rgba(7, 36, 58, 0.55) 45%, rgba(20, 16, 12, 0.88) 100%);
+
+  /* ===========================================================================
+     14 · Z-INDEX — escala documentada (evita el caos de números mágicos).
+     =========================================================================== */
+  --z-ocean: -1;        /* body::before / ::after (fondo fijo)               */
+  --z-base: 0;          /* contenido normal                                 */
+  --z-raised: 10;       /* cards en hover, dropdowns inline                 */
+  --z-sticky: 100;      /* resumen sticky, CTA sticky móvil, barra controles */
+  --z-header: 200;      /* header sticky global                             */
+  --z-drawer: 300;      /* drawer de filtros / menú móvil                   */
+  --z-overlay: 400;     /* velo de fondo de drawer/modal                    */
+  --z-modal: 500;       /* modales / guía de tallas                         */
+  --z-toast: 600;       /* toast "Añadido a la bolsa" (sobre todo)          */
+
+  /* ===========================================================================
+     15 · MOVIMIENTO — duraciones y easings (solo transform/opacity). Heredado
+     del sistema de catán. El motion-engineer consume estas variables.
+     =========================================================================== */
+  --dur-instant: 100ms;
+  --dur-fast: 150ms;    /* presses, hovers de botón                         */
+  --dur-base: 240ms;    /* entradas, slides, transiciones de card           */
+  --dur-slow: 320ms;    /* pulsos, reveals con stagger                      */
+  --dur-slower: 400ms;  /* tope de feedback funcional                       */
+  --dur-ambient: 52s;   /* deriva de las olas del océano                    */
+
+  /* Curvas: entradas decelerantes vs. presses/pulsos. */
+  --ease-enter: cubic-bezier(0.2, 0.7, 0.2, 1);   /* aparición suave         */
+  --ease-press: cubic-bezier(0.4, 0, 0.2, 1);     /* botones / pulsos        */
+  --ease-out: ease-out;
+
+  /* ===========================================================================
+     16 · BREAKPOINTS — solo de REFERENCIA en comentarios (CSS puro no permite
+     variables en media queries; el ui-engineer escribe estos valores a mano).
+     -----------------------------------------------------------------------------
+       móvil base ............ ≤ 480px   (2 col en grid de catálogo)
+       móvil grande/tablet ... 481–768px
+       tablet/landscape ...... 769–1024px (3 col)
+       desktop ............... ≥ 1025px   (4 col, detalle a 2 columnas sticky)
+       contenedor máx ........ 1400px centrado
+     Mobile-first: escribir base sin media query y subir con min-width.
+     =========================================================================== */
+}

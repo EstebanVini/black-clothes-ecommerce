@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs cat)",
+      "Bash(magick -version)",
+      "Bash(echo \"magick? $\\(magick -version)",
+      "Bash(python3 -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(npm ls *)",
+      "Bash(timeout 5 npm view sharp version)",
+      "Bash(mkdir -p public/icons)",
+      "Bash(python3 -)",
+      "Bash(python3 -c \"from PIL import Image; [print\\(f, Image.open\\('public/icons/'+f\\).size, 'modo', Image.open\\('public/icons/'+f\\).mode\\) for f in __import__\\('os'\\).listdir\\('public/icons'\\)]\")",
+      "Bash(npm run *)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('dist/manifest.webmanifest'\\)\\); print\\('OK ·', d['name'], '· íconos:', len\\(d['icons']\\)\\)\")",
+      "Bash(node --check dist/sw.js)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "_meta": {
+    "fuente": "Pexels (todas las URLs verificadas vía página de origen). Licencia Pexels: uso libre, comercial, sin atribución obligatoria, hotlinking permitido.",
+    "verificado": "2026-06-23",
+    "nota": "Cada URL del CDN se construye de forma determinista a partir del ID confirmado de la foto/video en su página de Pexels."
+  },
+  "hero_videos": [
+    {
+      "url": "https://videos.pexels.com/video-files/9511841/9511841-uhd_2732_1440_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/9511841/pexels-photo-9511841.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "descripcion": "Pasarela: modelos diversos desfilando con diseños modernos en interior, horizontal 4K, apto para loop silenciado (cottonbro studio)"
+    },
+    {
+      "url": "https://videos.pexels.com/video-files/7677321/7677321-hd_1920_1080_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/7677321/abstract-art-background-blur-7677321.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "descripcion": "Tela de seda negra fluyendo en primer plano sobre fondo oscuro, horizontal 1080p, ideal loop silenciado de fondo (Mikhail Nilov)"
+    }
+  ],
+  "editorial": [
+    {
+      "url": "https://images.pexels.com/photos/30816952/pexels-photo-30816952.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "descripcion": "Editorial de moda en movimiento con motion blur, atuendo contemporáneo, tono dramático",
+      "orientacion": "horizontal"
+    },
+    {
+      "url": "https://images.pexels.com/photos/9241630/pexels-photo-9241630.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "descripcion": "Dos modelos con abrigos largos posando descalzas en estudio minimalista, campaña lookbook",
+      "orientacion": "horizontal"
+    },
+    {
+      "url": "https://images.pexels.com/photos/19711183/pexels-photo-19711183.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "descripcion": "Sesión de moda con modelos en outfits modernos y bolsos de piel, campaña de accesorios",
+      "orientacion": "horizontal"
+    },
+    {
+      "url": "https://images.pexels.com/photos/15071849/pexels-photo-15071849.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "descripcion": "Dos mujeres en vestidos elegantes posando en interior con paraguas translúcidos, editorial",
+      "orientacion": "horizontal"
+    }
+  ],
+  "productos": [
+    {
+      "categoria": "abrigos",
+      "principal": "https://images.pexels.com/photos/30451277/pexels-photo-30451277.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/18275129/pexels-photo-18275129.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "abrigo rojo street style (alterna: abrigo blanco con cuello alto)"
+    },
+    {
+      "categoria": "abrigos",
+      "principal": "https://images.pexels.com/photos/14495270/pexels-photo-14495270.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/15835238/pexels-photo-15835238.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "abrigo de invierno mujer exterior (alterna: retrato de mujer en abrigo blanco y negro)"
+    },
+    {
+      "categoria": "vestidos",
+      "principal": "https://images.pexels.com/photos/21706028/pexels-photo-21706028.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/7123307/pexels-photo-7123307.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "vestido elegante retrato blanco y negro (alterna: vestido ornamentado posando)"
+    },
+    {
+      "categoria": "vestidos",
+      "principal": "https://images.pexels.com/photos/26998033/pexels-photo-26998033.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": null,
+      "descripcion": "vestido negro elegante en escaparate de lujo"
+    },
+    {
+      "categoria": "sueteres",
+      "principal": "https://images.pexels.com/photos/20025517/pexels-photo-20025517.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/3941172/pexels-photo-3941172.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "suéter blanco con gafas sobre fondo oscuro (alterna: cuello alto negro)"
+    },
+    {
+      "categoria": "camisas",
+      "principal": "https://images.pexels.com/photos/2784879/pexels-photo-2784879.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/9956796/pexels-photo-9956796.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "camisa blanca de vestir, retrato en estudio (alterna: blusa blanca luz natural)"
+    },
+    {
+      "categoria": "pantalones",
+      "principal": "https://images.pexels.com/photos/16969473/pexels-photo-16969473.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/14408067/pexels-photo-14408067.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "pantalón ajustado retrato monocromo urbano (alterna: pantalón ancho posando en estudio)"
+    },
+    {
+      "categoria": "accesorios",
+      "principal": "https://images.pexels.com/photos/932401/pexels-photo-932401.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/3777932/pexels-photo-3777932.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "bolso de piel con outfit urbano (alterna: bolso de piel vintage primer plano)"
+    },
+    {
+      "categoria": "calzado",
+      "principal": "https://images.pexels.com/photos/27100521/pexels-photo-27100521.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/27204296/pexels-photo-27204296.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "tacones burdeos en estudio (alterna: tacones negros sobre fondo beige)"
+    },
+    {
+      "categoria": "abrigos",
+      "principal": "https://images.pexels.com/photos/12551545/pexels-photo-12551545.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/10955935/pexels-photo-10955935.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "abrigo retrato urbano con fondo de ciudad (alterna: abrigo blanco en bosque nevado)"
+    },
+    {
+      "categoria": "vestidos",
+      "principal": "https://images.pexels.com/photos/14814788/pexels-photo-14814788.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": null,
+      "descripcion": "vestido rojo elegante sentada en café exterior"
+    },
+    {
+      "categoria": "sueteres",
+      "principal": "https://images.pexels.com/photos/1125328/pexels-photo-1125328.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/5491145/pexels-photo-5491145.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "suéter de canalé verde retrato (alterna: cuello alto beige luz natural)"
+    },
+    {
+      "categoria": "sueteres",
+      "principal": "https://images.pexels.com/photos/885580/pexels-photo-885580.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": null,
+      "descripcion": "suéter rosa de punto con pantalón blanco, posando en interior"
+    },
+    {
+      "categoria": "camisas",
+      "principal": "https://images.pexels.com/photos/160414/pexels-photo-160414.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/11802389/pexels-photo-11802389.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "blusa negra off-shoulder sobre fondo oscuro (alterna: blusa blanca junto a ventana)"
+    },
+    {
+      "categoria": "camisas",
+      "principal": "https://images.pexels.com/photos/27786098/pexels-photo-27786098.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": null,
+      "descripcion": "camisa blanca con jeans, retrato casual de moda"
+    },
+    {
+      "categoria": "pantalones",
+      "principal": "https://images.pexels.com/photos/9502220/pexels-photo-9502220.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": null,
+      "descripcion": "pantalón en balcón urbano, moda casual con luz natural"
+    },
+    {
+      "categoria": "accesorios",
+      "principal": "https://images.pexels.com/photos/5591912/pexels-photo-5591912.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/14629530/pexels-photo-14629530.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "bolso de lujo con asa de piel sobre sillón (alterna: conjunto abrigo plaid con bolso negro)"
+    },
+    {
+      "categoria": "calzado",
+      "principal": "https://images.pexels.com/photos/134064/pexels-photo-134064.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "alterna": "https://images.pexels.com/photos/2669/high-heels-shoes-luxury-rich.jpg?auto=compress&cs=tinysrgb&w=1000",
+      "descripcion": "tacones beige de piel texturizada (alterna: stilettos dorados sobre superficie reflejante)"
+    }
+  ]
+}

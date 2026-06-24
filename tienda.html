@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Tienda YOYO. Todo lo que tejemos, en un solo lugar. Filtra por categoría, talla y precio.">
+  <meta name="theme-color" content="#14100c">
+  <title>Tienda · YOYO</title>
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body data-pagina="catalogo">
+
+  <a class="sr-only sr-only-focusable" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===================== HEADER GLOBAL ===================== -->
+  <header class="cabecera" data-header>
+    <div class="contenedor">
+      <div class="cabecera__barra">
+        <button type="button" class="boton-icono menu-toggle" data-menu-abrir aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+        </button>
+
+        <a class="logo" href="index.html" aria-label="YOYO · Ir al inicio">YOYO</a>
+
+        <nav class="nav-primaria" aria-label="Navegación principal">
+          <ul class="nav-primaria__lista">
+            <li><a class="nav-primaria__enlace" href="tienda.html" aria-current="page">Tienda</a></li>
+            <li><a class="nav-primaria__enlace" href="tienda.html">Colecciones</a></li>
+            <li><a class="nav-primaria__enlace" href="index.html#lookbook">Lookbook</a></li>
+            <li><a class="nav-primaria__enlace" href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="cabecera__acciones">
+          <a class="bolsa-enlace" href="carrito.html" data-bolsa-enlace aria-label="Tu bolsa, sin prendas">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 8h12l-1 11a2 2 0 0 1-2 1.8H9A2 2 0 0 1 7 19L6 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+            <span class="bolsa-badge" data-bolsa-badge hidden></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-velo" data-menu-velo></div>
+  <nav class="menu-panel" id="menu-movil" data-menu-panel aria-label="Menú">
+    <div class="menu-panel__cabecera">
+      <span class="logo">YOYO</span>
+      <button type="button" class="boton-icono" data-menu-cerrar aria-label="Cerrar menú">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <ul class="menu-panel__lista">
+      <li><a class="menu-panel__enlace" href="tienda.html">Tienda</a></li>
+      <li><a class="menu-panel__enlace" href="tienda.html">Colecciones</a></li>
+      <li><a class="menu-panel__enlace" href="index.html#lookbook">Lookbook</a></li>
+      <li><a class="menu-panel__enlace" href="index.html#contacto">Contacto</a></li>
+      <li><a class="menu-panel__enlace" href="carrito.html">Tu bolsa</a></li>
+    </ul>
+  </nav>
+
+  <main id="contenido">
+
+    <noscript>
+      <p class="aviso-noscript">Activa JavaScript para ver el catálogo completo y usar tu bolsa. Mientras tanto, puedes navegar por las secciones del menú.</p>
+    </noscript>
+
+    <div class="contenedor">
+      <div class="catalogo-encabezado">
+        <span class="eyebrow">Colección completa</span>
+        <h1 class="catalogo-encabezado__titulo">Tienda</h1>
+        <p class="catalogo-encabezado__sub">Todo lo que tejemos, en un solo lugar. Filtra hasta encontrar lo tuyo.</p>
+        <p class="catalogo-contador" data-contador aria-live="polite">18 prendas</p>
+      </div>
+
+      <div class="catalogo-layout">
+
+        <!-- ===================== PANEL DE FILTROS ===================== -->
+        <aside class="filtros-aside" aria-label="Filtros de catálogo">
+          <form class="filtros-panel" id="menu-filtros" data-filtros data-filtros-panel>
+            <div class="filtros-panel__cabecera">
+              <h2>Filtros</h2>
+              <button type="button" class="boton-icono filtros-cerrar" data-filtros-cerrar aria-label="Cerrar filtros">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12"/><path d="M18 6 6 18"/></svg>
+              </button>
+            </div>
+
+            <div class="filtros-panel__cuerpo">
+              <fieldset class="filtros-grupo">
+                <legend class="filtros-grupo__titulo">Categoría</legend>
+                <div class="filtros-grupo__opciones">
+                  <label class="opcion-filtro"><input type="checkbox" data-filtro-categoria value="abrigos"> Abrigos</label>
+                  <label class="opcion-filtro"><input type="checkbox" data-filtro-categoria value="vestidos"> Vestidos</label>
+                  <label class="opcion-filtro"><input type="checkbox" data-filtro-categoria value="sueteres"> Suéteres</label>
+                  <label class="opcion-filtro"><input type="checkbox" data-filtro-categoria value="camisas"> Camisas</label>
+                  <label class="opcion-filtro"><input type="checkbox" data-filtro-categoria value="pantalones"> Pantalones</label>
+                  <label class="opcion-filtro"><input type="checkbox" data-filtro-categoria value="accesorios"> Accesorios</label>
+                  <label class="opcion-filtro"><input type="checkbox" data-filtro-categoria value="calzado"> Calzado</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="filtros-grupo">
+                <legend class="filtros-grupo__titulo">Talla</legend>
+                <div class="filtros-grupo__tallas">
+                  <label class="chip-talla"><input type="checkbox" data-filtro-talla value="XS"><span>XS</span></label>
+                  <label class="chip-talla"><input type="checkbox" data-filtro-talla value="S"><span>S</span></label>
+                  <label class="chip-talla"><input type="checkbox" data-filtro-talla value="M"><span>M</span></label>
+                  <label class="chip-talla"><input type="checkbox" data-filtro-talla value="L"><span>L</span></label>
+                  <label class="chip-talla"><input type="checkbox" data-filtro-talla value="XL"><span>XL</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="filtros-grupo">
+                <legend class="filtros-grupo__titulo">Precio</legend>
+                <div class="filtros-precio">
+                  <label class="sr-only" for="precio-min">Precio mínimo</label>
+                  <input class="input" type="number" id="precio-min" data-precio-min min="0" step="100" placeholder="$0" inputmode="numeric">
+                  <span class="filtros-precio__sep" aria-hidden="true">a</span>
+                  <label class="sr-only" for="precio-max">Precio máximo</label>
+                  <input class="input" type="number" id="precio-max" data-precio-max min="0" step="100" placeholder="Máx" inputmode="numeric">
+                </div>
+              </fieldset>
+
+              <button type="button" class="boton-texto" data-limpiar>Limpiar filtros</button>
+            </div>
+
+            <div class="filtros-panel__pie">
+              <button type="submit" class="boton boton--bloque" data-aplicar-filtros>Ver 18 prendas</button>
+            </div>
+          </form>
+        </aside>
+
+        <!-- ===================== GRID Y CONTROLES ===================== -->
+        <div>
+          <div class="catalogo-controles">
+            <button type="button" class="boton-secundario filtros-abrir" data-filtros-abrir aria-expanded="false" aria-controls="menu-filtros">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M7 12h10"/><path d="M10 18h4"/></svg>
+              Filtrar
+            </button>
+            <div class="catalogo-controles__orden">
+              <label for="orden">Ordenar por</label>
+              <select class="select" id="orden" data-orden>
+                <option value="relevancia">Relevancia</option>
+                <option value="novedad">Novedades primero</option>
+                <option value="precio-asc">Precio: menor a mayor</option>
+                <option value="precio-desc">Precio: mayor a menor</option>
+                <option value="nombre">Nombre: A a Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="catalogo-chips chips-activos" data-chips-activos hidden></div>
+
+          <div class="catalogo-grid grid-productos" data-grid data-reveal-grupo>
+            <!-- Cards renderizadas por JS -->
+          </div>
+
+          <!-- Estado vacío de filtros -->
+          <div class="catalogo-vacio estado-vacio" data-grid-vacio hidden>
+            <span class="estado-vacio__icono" aria-hidden="true">
+              <svg viewBox="0 0 120 120" width="72" height="72" fill="none" aria-hidden="true"><text x="60" y="74" text-anchor="middle" font-family="Iowan Old Style, Palatino, Georgia, serif" font-size="46" font-weight="700" fill="currentColor" letter-spacing="2">YO</text></svg>
+            </span>
+            <h2 class="estado-vacio__titulo">No encontramos prendas con esos filtros</h2>
+            <p class="estado-vacio__texto">Prueba con menos filtros o amplía el rango de precio. Tu prenda ideal puede estar a un ajuste de distancia.</p>
+            <button type="button" class="boton" data-limpiar>Limpiar filtros</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===================== FOOTER GLOBAL ===================== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__principal">
+        <div class="pie__marca">
+          <span class="logo">YOYO</span>
+          <p class="pie__claim">Moda con alma artesanal. Hecha para acompañarte.</p>
+          <div class="pie__redes">
+            <a class="pie__red" href="#" aria-label="YOYO en Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="pie__red" href="#" aria-label="YOYO en Pinterest">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.5 20.5c-.4-1.6-.1-3.4.3-5 .4-1.7 1.3-5.3 1.3-5.3a3 3 0 1 1 2.8 1.2c-.7 2.8 1.4 4 3.1 2.7 1.9-1.6 1.9-5.6-.6-7.3-2.7-1.9-7-1-8.3 2.2-.5 1.2-.3 2.6.4 3.5"/></svg>
+            </a>
+            <a class="pie__red" href="#" aria-label="YOYO en TikTok">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.4 2.3 2 3.9 4.5 4.2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="pie__columnas">
+          <div>
+            <h2 class="pie__titulo">Tienda</h2>
+            <ul class="pie__lista">
+              <li><a href="tienda.html">Novedades</a></li>
+              <li><a href="tienda.html">Colecciones</a></li>
+              <li><a href="tienda.html">Ofertas</a></li>
+              <li><a href="index.html#lookbook">Lookbook</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="pie__titulo">Ayuda</h2>
+            <ul class="pie__lista">
+              <li><a href="#">Envíos</a></li>
+              <li><a href="#">Devoluciones</a></li>
+              <li><a href="#">Guía de tallas</a></li>
+              <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="pie__titulo">YOYO</h2>
+            <ul class="pie__lista">
+              <li><a href="#">Sobre YOYO</a></li>
+              <li><a href="#">El taller</a></li>
+              <li><a href="#">Términos</a></li>
+              <li><a href="#">Privacidad</a></li>
+            </ul>
+          </div>
+          <div class="pie__newsletter">
+            <h2 class="pie__titulo">Novedades por correo</h2>
+            <form data-newsletter novalidate>
+              <div class="input-grupo">
+                <label class="sr-only" for="footer-email">Tu correo electrónico</label>
+                <input class="input" type="email" id="footer-email" name="email" placeholder="nombre@correo.com" autocomplete="email">
+                <button class="boton-secundario" type="submit">Suscribirme</button>
+              </div>
+              <p class="form-mensaje" data-newsletter-mensaje role="status" hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="pie__base">
+        <span>© 2026 YOYO · Demo sin fines comerciales</span>
+        <span>Hecho con alma en México.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="yoyo-toasts" class="toasts" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>
